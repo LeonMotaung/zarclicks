@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>1nFloU — About Us</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/icon.webp') }}" type="image/gif" sizes="16x16">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="About 1nFloU — Learn about our mission, team, and values in influencer marketing" name="description">
+    <meta content="influencer marketing, about us, brand collaboration, content creation" name="keywords">
+    <meta content="" name="author">
+    <!-- CSS Files -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bootstrap">
+    <link href="{{ url_for('static', filename='css/vendors.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/coloring.css') }}" rel="stylesheet" type="text/css">
+    <!-- color scheme -->
+    <link id="colors" href="{{ url_for('static', filename='css/colors/scheme-01.css') }}" rel="stylesheet" type="text/css">
+    <!-- Font Awesome for enhanced icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    /* CSS Variables for consistent theming */
+    :root {
+        --primary-color: #6366f1;
+        --secondary-color: #f8fafc;
+        --card-bg: #ffffff;
+        --text-dark: #1f2937;
+        --text-light: #6b7280;
+        --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --border-radius: 12px;
+        --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Global Reset for Consistent Spacing */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+    }
+
+    /* Hero Section */
+    .hero-section {
+        background: var(--gradient-bg);
+        color: white;
+        padding: 120px 0 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 1;
+    }
+
+    .hero-section .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        letter-spacing: -0.025em;
+    }
+
+    .hero-section .lead {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* About Section */
+    .about-section {
+        padding: 80px 0;
+        background-color: var(--secondary-color);
+    }
+
+    .about-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        letter-spacing: -0.025em;
+    }
+
+    .about-section p {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        max-width: 800px;
+        margin: 0 auto 2rem;
+        text-align: center;
+    }
+
+    /* Team Section */
+    .team-section {
+        padding: 80px 0;
+    }
+
+    .team-section h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .team-section p {
+        color: var(--text-light);
+        font-size: 1rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        text-align: center;
+    }
+
+    .team-card {
+        background-color: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        height: 100%;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-light);
+        border: 1px solid #e5e7eb;
+        text-align: center;
+    }
+
+    .team-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .team-card img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1.5rem;
+    }
+
+    .team-card h4 {
+        color: var(--text-dark);
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .team-card p {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .team-card .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .team-card .social-icons a {
+        color: var(--text-light);
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    .team-card .social-icons a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Values Section */
+    .values-section {
+        padding: 80px 0;
+        background-color: var(--secondary-color);
+    }
+
+    .values-section h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .values-section p {
+        color: var(--text-light);
+        font-size: 1rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        text-align: center;
+    }
+
+    .value-card {
+        background-color: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        height: 100%;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-light);
+        border: 1px solid #e5e7eb;
+        text-align: center;
+    }
+
+    .value-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .value-icon {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+    }
+
+    .value-card h4 {
+        color: var(--text-dark);
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .value-card p {
+        color: var(--text-light);
+        font-size: 0.95rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        background: var(--gradient-bg);
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+        position: relative;
+    }
+
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 1;
+    }
+
+    .cta-section .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .cta-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.025em;
+    }
+
+    .cta-section p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        opacity: 0.9;
+    }
+
+    .cta-section .btn-main {
+        padding: 14px 32px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: var(--border-radius);
+        transition: all 0.3s ease;
+    }
+
+    .cta-section .btn-main:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    /* Footer */
+    .footer-light {
+        padding: 60px 0 20px;
+        background-color: var(--secondary-color);
+    }
+
+    .footer-light .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .footer-light .social-icons a {
+        color: var(--text-dark);
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    .footer-light .social-icons a:hover {
+        color: var(--primary-color);
+    }
+
+    .footer-light .widget h5 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .footer-light .widget ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-light .widget ul li {
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-light .widget ul li a {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+    }
+
+    .footer-light .widget ul li a:hover {
+        color: var(--primary-color);
+    }
+
+    .subfooter {
+        padding: 20px 0;
+        border-top: 1px solid #e5e7eb;
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--text-light);
+    }
+
+    .subfooter .menu-simple {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .subfooter .menu-simple li a {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+    }
+
+    .subfooter .menu-simple li a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: 80px 0 60px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.25rem;
+        }
+
+        .hero-section .lead {
+            font-size: 1rem;
+        }
+
+        .about-section,
+        .team-section,
+        .values-section {
+            padding: 60px 0;
+        }
+
+        .about-section h2,
+        .team-section h2,
+        .values-section h2 {
+            font-size: 1.75rem;
+        }
+
+        .team-card,
+        .value-card {
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section {
+            padding: 60px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 1.75rem;
+        }
+
+        .footer-light .row {
+            text-align: center;
+        }
+
+        .footer-light .social-icons {
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-section h1 {
+            font-size: 1.75rem;
+        }
+
+        .hero-section .lead {
+            font-size: 0.9rem;
+        }
+
+        .about-section h2,
+        .team-section h2,
+        .values-section h2 {
+            font-size: 1.5rem;
+        }
+
+        .team-card img {
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    /* Section Spacing */
+    .pt-120 {
+        padding-top: 80px;
+    }
+
+    .pb-90 {
+        padding-bottom: 80px;
+    }
+
+    /* WOW Animations */
+    .wow {
+        visibility: hidden;
+    }
+</style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <a href="#top" id="back-to-top"></a>
+        
+        <!-- page preloader begin -->
+        <div id="de-loader"></div>
+        <!-- page preloader close -->
+
+        <!-- header begin -->
+        <header class="transparent header-light header-float">
+            <div class="container-float">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="header-inner">
+                            <div class="de-flex sm-pt10">
+                                <div class="de-flex-col">
+                                    <!-- logo begin -->
+                                    <div id="logo">
+                                        <a href="/">
+                                            <img class="logo-main" src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
+                                            <img class="logo-scroll" src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
+                                            <img class="logo-mobile" src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
+                                        </a>
+                                    </div>
+                                    <!-- logo close -->
+                                </div>
+                                <div class="de-flex-col header-col-mid">
+                                    <ul id="mainmenu">
+                                        <li><a class="menu-item" href="/">Home</a></li>
+                                        <li><a class="menu-item active" href="/about">About Us</a></li>
+                                        <li><a class="menu-item" href="/services">Services</a>
+                                            <ul>
+                                                <li><a class="menu-item" href="/services">All Services</a></li>
+                                                <li><a class="menu-item" href="/service-single">Services Single</a></li>
+                                                <li><a class="menu-item" href="/pricing">Pricing Plans</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="menu-item" href="/case-studies">Case Studies</a></li>
+                                        <li><a class="menu-item" href="/blog">Blog</a></li>
+                                        <li><a class="menu-item" href="/contact">Contact</a></li>
+                                    </ul>
+                                </div>
+                                <div class="de-flex-col">
+                                    <div class="menu_side_area">          
+                                        <a class="btn-main fx-slide" href="#auth-section"><span>Login / Register</span></a>
+                                        <span id="menu-btn"></span>
+                                    </div>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header close -->
+
+        <!-- content begin -->
+        <div class="no-bottom no-top" id="content">
+            <div id="top"></div>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <h1 class="wow fadeInUp" data-wow-delay=".2s">About 1nFloU</h1>
+                            <p class="lead wow fadeInUp" data-wow-delay=".4s">Empowering brands and creators to build authentic connections through innovative influencer marketing solutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about-section pt-120 pb-90">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Our Mission</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">At 1nFloU, our mission is to revolutionize influencer marketing by providing a seamless platform that connects brands with the right creators to deliver impactful, authentic content that resonates with audiences worldwide.</p>
+                            <p class="wow fadeInUp" data-wow-delay=".6s">Founded in 2023, we’ve grown into a trusted platform used by thousands of brands and influencers. Our innovative tools and data-driven approach ensure every campaign maximizes reach, engagement, and ROI.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Section -->
+            <section class="team-section pt-120 pb-90">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Meet Our Team</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Our passionate team is dedicated to helping you succeed in influencer marketing.</p>
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-4">
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="team-card">
+                                <img src="{{ url_for('static', filename='images/team/team1.webp') }}" alt="Team Member">
+                                <h4>Jane Doe</h4>
+                                <p>CEO & Founder</p>
+                                <p>Jane leads with a vision to transform influencer marketing with cutting-edge technology.</p>
+                                <div class="social-icons">
+                                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                            <div class="team-card">
+                                <img src="{{ url_for('static', filename='images/team/team2.webp') }}" alt="Team Member">
+                                <h4>John Smith</h4>
+                                <p>CTO</p>
+                                <p>John drives our platform’s innovation, ensuring seamless performance and scalability.</p>
+                                <div class="social-icons">
+                                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                            <div class="team-card">
+                                <img src="{{ url_for('static', filename='images/team/team3.webp') }}" alt="Team Member">
+                                <h4>Emily Brown</h4>
+                                <p>Head of Marketing</p>
+                                <p>Emily crafts strategies to connect brands and creators for maximum impact.</p>
+                                <div class="social-icons">
+                                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Values Section -->
+            <section class="values-section pt-120 pb-90">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Our Core Values</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">The principles that guide everything we do at 1nFloU.</p>
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-4">
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="value-card">
+                                <div class="value-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <h4>Authenticity</h4>
+                                <p>We believe in fostering genuine connections between brands and creators.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                            <div class="value-card">
+                                <div class="value-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <h4>Innovation</h4>
+                                <p>We push boundaries with cutting-edge tools to stay ahead in influencer marketing.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                            <div class="value-card">
+                                <div class="value-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h4>Community</h4>
+                                <p>We build a supportive ecosystem for brands and creators to thrive together.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Join the 1nFloU Community</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Ready to take your influencer marketing to the next level? Sign up today!</p>
+                            <a href="#auth-section" class="btn-main fx-slide wow fadeInUp" data-wow-delay=".6s"><span>Get Started</span></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- content close -->
+
+        <!-- footer begin -->
+        <footer class="footer-light">
+            <div class="container">
+                <div class="row gx-5">
+                    <div class="col-lg-4 col-sm-6">
+                        <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
+                        <div class="spacer-20"></div>
+                        <p>1nFloU connects brands with the perfect influencers to create authentic content that drives engagement and conversions.</p>
+                        <div class="social-icons mb-sm-30">
+                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12 order-lg-1 order-sm-2">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="widget">
+                                    <h5>Company</h5>
+                                    <ul>
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/services">Our Services</a></li>
+                                        <li><a href="/case-studies">Case Studies</a></li>
+                                        <li><a href="/about">About Us</a></li>
+                                        <li><a href="/blog">Blog</a></li>
+                                        <li><a href="/contact">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="widget">
+                                    <h5>Our Services</h5>
+                                    <ul>
+                                        <li><a href="/services">Influencer Marketing</a></li>
+                                        <li><a href="/services">Content Import</a></li>
+                                        <li><a href="/services">Campaign Management</a></li>
+                                        <li><a href="/services">Analytics & Reporting</a></li>
+                                        <li><a href="/services">Influencer Discovery</a></li>
+                                        <li><a href="/services">Payment Processing</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 order-lg-2 order-sm-1">
+                        <div class="widget">
+                            <div class="fw-bold text-dark"><i class="icofont-location-pin me-2 id-color"></i>Office Location</div>
+                            12 Vermeer, Bellville, Cape Town, South Africa, 7530
+                            <div class="spacer-20"></div>
+                            <div class="fw-bold text-dark"><i class="icofont-envelope me-2 id-color"></i>Send a Message</div>
+                            info@detwet.com
+                            <div class="spacer-20"></div>
+                            <div class="fw-bold text-dark"><i class="icofont-phone me-2 id-color"></i>Make a Phone Call</div>
+                            +27 84 866 2418                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="subfooter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="de-flex">
+                                <div class="de-flex-col">
+                                    Copyright 2025 - DeWet Technologies.
+                                </div>
+                                <ul class="menu-simple">
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer close -->
+    </div>
+
+    <!-- Javascript Files -->
+    <script src="{{ url_for('static', filename='js/vendors.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/designesia.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
