@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Our Services - 1nFloU Influencer Marketing Platform</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/icon.webp') }}" type="image/gif" sizes="16x16">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="1nFloU — Professional influencer marketing services for brands and creators" name="description">
+    <meta content="influencer marketing services, campaign management, content creation, analytics" name="keywords">
+    <meta content="" name="author">
+    <!-- CSS Files -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bootstrap">
+    <link href="{{ url_for('static', filename='css/vendors.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/coloring.css') }}" rel="stylesheet" type="text/css">
+    <!-- color scheme -->
+    <link id="colors" href="{{ url_for('static', filename='css/colors/scheme-01.css') }}" rel="stylesheet" type="text/css">
+    <!-- Font Awesome for enhanced icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    /* CSS Variables for consistent theming */
+    :root {
+        --primary-color: #6366f1;
+        --secondary-color: #f8fafc;
+        --card-bg: #ffffff;
+        --text-dark: #1f2937;
+        --text-light: #6b7280;
+        --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --border-radius: 12px;
+        --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Global Reset for Consistent Spacing */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+    }
+
+    /* Hero Section */
+    .hero-section {
+        background: var(--gradient-bg);
+        color: white;
+        padding: 120px 0 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 1;
+    }
+
+    .hero-section .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        letter-spacing: -0.025em;
+    }
+
+    .hero-section .lead {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Service Cards */
+    .service-card {
+        background-color: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 2.5rem;
+        height: 100%;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-light);
+        border: 1px solid #e5e7eb;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .service-icon {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+    }
+
+    .service-card h3 {
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+
+    .service-card p {
+        color: var(--text-light);
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .service-features {
+        margin-top: auto;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .service-features ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .service-features li {
+        margin-bottom: 0.5rem;
+        color: var(--text-light);
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .service-features li:before {
+        content: "✓";
+        color: var(--primary-color);
+        font-weight: bold;
+        margin-right: 0.5rem;
+    }
+
+    .service-cta {
+        margin-top: 1.5rem;
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+        padding: 80px 0;
+        background-color: var(--secondary-color);
+    }
+
+    .pricing-card {
+        background-color: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 2.5rem;
+        height: 100%;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-light);
+        border: 1px solid #e5e7eb;
+        text-align: center;
+        position: relative;
+    }
+
+    .pricing-card.featured {
+        border: 2px solid var(--primary-color);
+        transform: scale(1.03);
+        z-index: 1;
+    }
+
+    .pricing-card.featured:before {
+        content: 'Most Popular';
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: var(--primary-color);
+        color: white;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border-bottom-left-radius: var(--border-radius);
+    }
+
+    .pricing-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .pricing-card.featured:hover {
+        transform: scale(1.03) translateY(-5px);
+    }
+
+    .pricing-header {
+        margin-bottom: 2rem;
+    }
+
+    .pricing-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+    }
+
+    .pricing-price {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .pricing-interval {
+        color: var(--text-light);
+        font-size: 0.9rem;
+    }
+
+    .pricing-features {
+        margin-bottom: 2rem;
+    }
+
+    .pricing-features ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .pricing-features li {
+        margin-bottom: 0.75rem;
+        color: var(--text-light);
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pricing-features li:before {
+        content: "✓";
+        color: var(--primary-color);
+        font-weight: bold;
+        margin-right: 0.5rem;
+    }
+
+    .pricing-features li.disabled {
+        opacity: 0.5;
+    }
+
+    .pricing-features li.disabled:before {
+        content: "✕";
+        color: #ef4444;
+    }
+
+    /* Process Section */
+    .process-section {
+        padding: 80px 0;
+    }
+
+    .process-step {
+        text-align: center;
+        padding: 2rem;
+        position: relative;
+    }
+
+    .process-number {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--gradient-bg);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 auto 1.5rem;
+    }
+
+    .process-step h4 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-dark);
+    }
+
+    .process-step p {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        background: var(--gradient-bg);
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+        position: relative;
+    }
+
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 1;
+    }
+
+    .cta-section .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .cta-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.025em;
+    }
+
+    .cta-section p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        opacity: 0.9;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+        padding: 80px 0;
+        background-color: var(--secondary-color);
+    }
+
+    .faq-item {
+        background-color: var(--card-bg);
+        border-radius: var(--border-radius);
+        margin-bottom: 1rem;
+        overflow: hidden;
+        box-shadow: var(--shadow-light);
+    }
+
+    .faq-question {
+        padding: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        color: var(--text-dark);
+    }
+
+    .faq-answer {
+        padding: 0 1.5rem 1.5rem;
+        color: var(--text-light);
+        display: none;
+    }
+
+    .faq-question i {
+        transition: transform 0.3s ease;
+    }
+
+    .faq-question.active i {
+        transform: rotate(180deg);
+    }
+
+    /* Footer */
+    .footer-light {
+        padding: 60px 0 20px;
+        background-color: var(--secondary-color);
+    }
+
+    .footer-light .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .footer-light .social-icons a {
+        color: var(--text-dark);
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    .footer-light .social-icons a:hover {
+        color: var(--primary-color);
+    }
+
+    .footer-light .widget h5 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .footer-light .widget ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-light .widget ul li {
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-light .widget ul li a {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+    }
+
+    .footer-light .widget ul li a:hover {
+        color: var(--primary-color);
+    }
+
+    .subfooter {
+        padding: 20px 0;
+        border-top: 1px solid #e5e7eb;
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--text-light);
+    }
+
+    .subfooter .menu-simple {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .subfooter .menu-simple li a {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+    }
+
+    .subfooter .menu-simple li a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: 80px 0 60px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.25rem;
+        }
+
+        .hero-section .lead {
+            font-size: 1rem;
+        }
+
+        .service-card,
+        .pricing-card {
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1);
+        }
+
+        .pricing-card.featured:hover {
+            transform: translateY(-5px);
+        }
+
+        .footer-light .row {
+            text-align: center;
+        }
+
+        .footer-light .social-icons {
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-section h1 {
+            font-size: 1.75rem;
+        }
+
+        .hero-section .lead {
+            font-size: 0.9rem;
+        }
+
+        .cta-section h2 {
+            font-size: 1.5rem;
+        }
+    }
+
+    /* Section Spacing */
+    .pt-120 {
+        padding-top: 80px;
+    }
+
+    .pb-90 {
+        padding-bottom: 80px;
+    }
+
+    /* WOW Animations */
+    .wow {
+        visibility: hidden;
+    }
+</style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <a href="#top" id="back-to-top"></a>
+        
+        <!-- page preloader begin -->
+        <div id="de-loader"></div>
+        <!-- page preloader close -->
+
+        <!-- header begin -->
+        <header class="transparent header-light header-float">
+            <div class="container-float">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="header-inner">
+                            <div class="de-flex sm-pt10">
+                                <div class="de-flex-col">
+                                    <!-- logo begin -->
+                                    <div id="logo">
+                                        <a href="/">
+                                            <img class="logo-main" src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
+                                            <img class="logo-scroll" src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
+                                            <img class="logo-mobile" src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
+                                        </a>
+                                    </div>
+                                    <!-- logo close -->
+                                </div>
+                                <div class="de-flex-col header-col-mid">
+                                    <ul id="mainmenu">
+                                        <li><a class="menu-item" href="/">Home</a></li>
+                                        <li><a class="menu-item" href="/about">About Us</a></li>
+                                        <li><a class="menu-item active" href="/services">Services</a>
+                                            <ul>
+                                                <li><a class="menu-item" href="/services">All Services</a></li>
+                                                <li><a class="menu-item" href="/service-single">Services Single</a></li>
+                                                <li><a class="menu-item" href="/pricing">Pricing Plans</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="menu-item" href="/case-studies">Case Studies</a></li>
+                                        <li><a class="menu-item" href="/blog">Blog</a></li>
+                                        <li><a class="menu-item" href="/contact">Contact</a></li>
+                                    </ul>
+                                </div>
+                                <div class="de-flex-col">
+                                    <div class="menu_side_area">          
+                                        <a class="btn-main fx-slide" href="/login_page"><span>Login / Register</span></a>
+                                        <span id="menu-btn"></span>
+                                    </div>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header close -->
+
+        <!-- content begin -->
+        <div class="no-bottom no-top" id="content">
+            <div id="top"></div>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <h1 class="wow fadeInUp" data-wow-delay=".2s">Our Services</h1>
+                            <p class="lead wow fadeInUp" data-wow-delay=".4s">Comprehensive influencer marketing solutions designed to connect brands with the right creators and drive measurable results.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="pt-120 pb-90">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 mx-auto text-center">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">What We Offer</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">End-to-end influencer marketing solutions for brands and creators</p>
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-4">
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h3>Influencer Discovery</h3>
+                                <p>Find the perfect creators for your brand with our advanced search and matching algorithm that analyzes audience demographics, engagement rates, and content quality.</p>
+                                <div class="service-features">
+                                    <ul>
+                                        <li>Advanced filtering by niche and demographics</li>
+                                        <li>Audience authenticity verification</li>
+                                        <li>Performance metrics analysis</li>
+                                    </ul>
+                                </div>
+                                <div class="service-cta">
+                                    <a href="#" class="btn-main fx-slide"><span>Learn More</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-campground"></i>
+                                </div>
+                                <h3>Campaign Management</h3>
+                                <p>Create, manage, and track multiple influencer campaigns from a single dashboard with our comprehensive campaign management tools.</p>
+                                <div class="service-features">
+                                    <ul>
+                                        <li>Centralized campaign dashboard</li>
+                                        <li>Automated outreach and follow-ups</li>
+                                        <li>Content approval workflow</li>
+                                        <li>Real-time progress tracking</li>
+                                    </ul>
+                                </div>
+                                <div class="service-cta">
+                                    <a href="#" class="btn-main fx-slide"><span>Learn More</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h3>Performance Analytics</h3>
+                                <p>Track campaign performance with detailed analytics and measure ROI with precision using our advanced reporting tools.</p>
+                                <div class="service-features">
+                                    <ul>
+                                        <li>Real-time engagement metrics</li>
+                                        <li>ROI and conversion tracking</li>
+                                        <li>Customizable reporting</li>
+                                        <li>Competitive benchmarking</li>
+                                    </ul>
+                                </div>
+                                <div class="service-cta">
+                                    <a href="#" class="btn-main fx-slide"><span>Learn More</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-share-alt"></i>
+                                </div>
+                                <h3>Content Distribution</h3>
+                                <p>Amplify your reach with our powerful content promotion tools that target the right audience across multiple platforms.</p>
+                                <div class="service-features">
+                                    <ul>
+                                        <li>Multi-platform distribution</li>
+                                        <li>Targeted audience reach</li>
+                                        <li>Content optimization tools</li>
+                                        <li>Performance tracking</li>
+                                    </ul>
+                                </div>
+                                <div class="service-cta">
+                                    <a href="#" class="btn-main fx-slide"><span>Learn More</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                </div>
+                                <h3>Payment Processing</h3>
+                                <p>Secure and streamlined payment system for hassle-free transactions with creators, including milestone-based payments.</p>
+                                <div class="service-features">
+                                    <ul>
+                                        <li>Secure escrow system</li>
+                                        <li>Milestone-based payments</li>
+                                        <li>Automated tax documentation</li>
+                                        <li>Multi-currency support</li>
+                                    </ul>
+                                </div>
+                                <div class="service-cta">
+                                    <a href="#" class="btn-main fx-slide"><span>Learn More</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".7s">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h3>Training & Support</h3>
+                                <p>Comprehensive training programs and dedicated support to ensure your team gets the most out of our platform.</p>
+                                <div class="service-features">
+                                    <ul>
+                                        <li>Onboarding sessions</li>
+                                        <li>Strategy consultation</li>
+                                        <li>24/7 dedicated support</li>
+                                        <li>Best practices resources</li>
+                                    </ul>
+                                </div>
+                                <div class="service-cta">
+                                    <a href="#" class="btn-main fx-slide"><span>Learn More</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Process Section -->
+            <section class="process-section pb-90">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 mx-auto text-center">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">How It Works</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Our simple 4-step process to successful influencer campaigns</p>
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-4">
+                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="process-step">
+                                <div class="process-number">1</div>
+                                <h4>Strategy & Planning</h4>
+                                <p>We help you define campaign objectives, target audience, and key performance indicators.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                            <div class="process-step">
+                                <div class="process-number">2</div>
+                                <h4>Influencer Matching</h4>
+                                <p>Our algorithm finds the perfect creators who align with your brand values and target audience.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                            <div class="process-step">
+                                <div class="process-number">3</div>
+                                <h4>Campaign Execution</h4>
+                                <p>We manage the entire process from outreach to content creation and publication.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                            <div class="process-step">
+                                <div class="process-number">4</div>
+                                <h4>Analysis & Reporting</h4>
+                                <p>Comprehensive performance reports with insights for future optimization.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section -->
+            <section class="pricing-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 mx-auto text-center">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Flexible Pricing Plans</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Choose the plan that works best for your business needs</p>
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-4">
+                        <div class="col-lg-4 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h3 class="pricing-name">Starter</h3>
+                                    <div class="pricing-price">$299</div>
+                                    <div class="pricing-interval">per month</div>
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li>Up to 5 campaigns monthly</li>
+                                        <li>Basic influencer discovery</li>
+                                        <li>Standard analytics</li>
+                                        <li>Email support</li>
+                                        <li class="disabled">Content distribution</li>
+                                        <li class="disabled">Dedicated account manager</li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn-main fx-slide"><span>Get Started</span></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 wow fadeInUp" data-wow-delay=".3s">
+                            <div class="pricing-card featured">
+                                <div class="pricing-header">
+                                    <h3 class="pricing-name">Professional</h3>
+                                    <div class="pricing-price">$799</div>
+                                    <div class="pricing-interval">per month</div>
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li>Up to 15 campaigns monthly</li>
+                                        <li>Advanced influencer discovery</li>
+                                        <li>Comprehensive analytics</li>
+                                        <li>Priority support</li>
+                                        <li>Basic content distribution</li>
+                                        <li class="disabled">Dedicated account manager</li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn-main fx-slide"><span>Get Started</span></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 wow fadeInUp" data-wow-delay=".4s">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h3 class="pricing-name">Enterprise</h3>
+                                    <div class="pricing-price">Custom</div>
+                                    <div class="pricing-interval">tailored solution</div>
+                                </div>
+                                <div class="pricing-features">
+                                    <ul>
+                                        <li>Unlimited campaigns</li>
+                                        <li>Premium influencer discovery</li>
+                                        <li>Advanced analytics & reporting</li>
+                                        <li>24/7 dedicated support</li>
+                                        <li>Full content distribution</li>
+                                        <li>Dedicated account manager</li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn-main fx-slide"><span>Contact Sales</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <h2 class="text-center wow fadeInUp" data-wow-delay=".2s">Frequently Asked Questions</h2>
+                            <p class="text-center wow fadeInUp" data-wow-delay=".4s">Find answers to common questions about our services</p>
+                            
+                            <div class="faq-list mt-5">
+                                <div class="faq-item wow fadeInUp" data-wow-delay=".2s">
+                                    <div class="faq-question">
+                                        How do I get started with 1nFloU?
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Getting started is easy! Simply sign up for an account, complete your profile, and you can immediately begin exploring our influencer database or creating your first campaign. Our onboarding process includes a guided tour and access to helpful resources.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item wow fadeInUp" data-wow-delay=".3s">
+                                    <div class="faq-question">
+                                        What types of businesses use your platform?
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="faq-answer">
+                                        We serve businesses of all sizes across various industries including e-commerce, fashion, beauty, technology, food & beverage, travel, and healthcare. Our platform is flexible enough to meet the needs of startups, mid-sized companies, and large enterprises.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item wow fadeInUp" data-wow-delay=".4s">
+                                    <div class="faq-question">
+                                        How do you ensure influencer authenticity?
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="faq-answer">
+                                        We use advanced algorithms to analyze engagement patterns, audience demographics, and content quality. Our verification process includes checking for fake followers, engagement pods, and other inauthentic activity. We also provide performance history for each influencer.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item wow fadeInUp" data-wow-delay=".5s">
+                                    <div class="faq-question">
+                                        Can I integrate with other marketing tools?
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Yes, 1nFloU offers integrations with popular marketing tools including Google Analytics, Shopify, HubSpot, and social media management platforms. Our API also allows for custom integrations with your existing tech stack.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item wow fadeInUp" data-wow-delay=".6s">
+                                    <div class="faq-question">
+                                        What kind of support do you offer?
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="faq-answer">
+                                        We provide comprehensive support including email and chat support for all plans. Professional and Enterprise plans include priority support and dedicated account management. We also offer training resources, webinars, and strategy consultations to help you maximize your results.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Ready to Get Started?</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Join thousands of brands already using 1nFloU to drive authentic engagement and measurable results.</p>
+                            <div class="hero-buttons wow fadeInUp" data-wow-delay=".6s">
+                                <a href="/pricing" class="btn-main fx-slide me-3"><span>View Plans</span></a>
+                                <a href="/contact" class="btn-main btn-dark-trans fx-slide"><span>Contact Us</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- content close -->
+
+        <!-- footer begin -->
+        <footer class="footer-light">
+            <div class="container">
+                <div class="row gx-5">
+                    <div class="col-lg-4 col-sm-6">
+                        <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
+                        <div class="spacer-20"></div>
+                        <p>1nFloU connects brands with the perfect influencers to create authentic content that drives engagement and conversions.</p>
+                        <div class="social-icons mb-sm-30">
+                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12 order-lg-1 order-sm-2">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="widget">
+                                    <h5>Company</h5>
+                                    <ul>
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/services">Our Services</a></li>
+                                        <li><a href="case-studies.html">Case Studies</a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="widget">
+                                    <h5>Our Services</h5>
+                                    <ul>
+                                        <li><a href="/services">Influencer Marketing</a></li>
+                                        <li><a href="/services">Content Import</a></li>
+                                        <li><a href="/services">Campaign Management</a></li>
+                                        <li><a href="/services">Analytics & Reporting</a></li>
+                                        <li><a href="/services">Influencer Discovery</a></li>
+                                        <li><a href="/services">Payment Processing</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 order-lg-2 order-sm-1">
+                        <div class="widget">
+                            <div class="fw-bold text-dark"><i class="icofont-location-pin me-2 id-color"></i>Office Location</div>
+                            12 Vermeer , Bellville, Cape Town, South Africa, 7530
+                            <div class="spacer-20"></div>
+                            <div class="fw-bold text-dark"><i class="icofont-envelope me-2 id-color"></i>Send a Message</div>
+                            info@detwet.com
+                            <div class="spacer-20"></div>
+                            <div class="fw-bold text-dark"><i class="icofont-phone me-2 id-color"></i>Make a Phone Call</div>
+                            +27 84 866 2418                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="subfooter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="de-flex">
+                                <div class="de-flex-col">
+                                    Copyright 2025 - DeWet Technologies .
+                                </div>
+                                <ul class="menu-simple">
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer close -->
+    </div>
+
+    <!-- Javascript Files -->
+    <script src="{{ url_for('static', filename='js/vendors.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/designesia.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ toggle functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all FAQs
+                    document.querySelectorAll('.faq-question').forEach(q => {
+                        q.classList.remove('active');
+                    });
+                    document.querySelectorAll('.faq-answer').forEach(a => {
+                        a.style.display = 'none';
+                    });
+                    
+                    // Open clicked FAQ if it wasn't already active
+                    if (!isActive) {
+                        this.classList.add('active');
+                        answer.style.display = 'block';
+                    }
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

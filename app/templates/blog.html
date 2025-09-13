@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>1nFloU — Login</title>
-    <link rel="icon" href="/static/images/icon.webp" type="image/gif" sizes="16x16">
+    <title>Blog - 1nFloU Influencer Marketing Platform</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/icon.webp') }}" type="image/gif" sizes="16x16">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Login to 1nFloU — Access your account to manage influencer marketing campaigns" name="description">
-    <meta content="login, influencer marketing, brand collaboration, account access" name="keywords">
+    <meta content="1nFloU Blog — Insights, tips, and trends in influencer marketing" name="description">
+    <meta content="influencer marketing blog, marketing tips, influencer trends" name="keywords">
     <meta content="" name="author">
     <!-- CSS Files -->
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap">
-    <link href="/static/css/vendors.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/coloring.css" rel="stylesheet" type="text/css">
-    <!-- Color scheme -->
-    <link id="colors" href="/static/css/colors/scheme-01.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bootstrap">
+    <link href="{{ url_for('static', filename='css/vendors.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/coloring.css') }}" rel="stylesheet" type="text/css">
+    <!-- color scheme -->
+    <link id="colors" href="{{ url_for('static', filename='css/colors/scheme-01.css') }}" rel="stylesheet" type="text/css">
     <!-- Font Awesome for enhanced icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -42,7 +42,6 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         line-height: 1.6;
         color: var(--text-dark);
-        background-color: var(--secondary-color);
     }
 
     /* Hero Section */
@@ -69,10 +68,11 @@
     .hero-section .container {
         position: relative;
         z-index: 2;
+        max-width: 800px;
     }
 
     .hero-section h1 {
-        font-size: 3.5rem;
+        font-size: 3rem;
         font-weight: 800;
         margin-bottom: 1.5rem;
         line-height: 1.2;
@@ -80,7 +80,7 @@
     }
 
     .hero-section .lead {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
         margin-bottom: 2rem;
         opacity: 0.9;
         max-width: 600px;
@@ -88,157 +88,163 @@
         margin-right: auto;
     }
 
-    /* Login Section */
-    .login-section {
+    /* Blog Section */
+    .blog-section {
         padding: 80px 0;
         background-color: var(--secondary-color);
     }
 
-    .login-section h2 {
-        font-size: 2.5rem;
-        font-weight: 700;
+    .blog-section .container {
+        max-width: 1200px;
+    }
+
+    .blog-post {
+        background-color: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
         margin-bottom: 1.5rem;
-        text-align: center;
-        letter-spacing: -0.025em;
-    }
-
-    .login-section p {
-        font-size: 1.1rem;
-        color: var(--text-light);
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        text-align: center;
-    }
-
-    /* User Type Selector */
-    .user-type-selector {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin: 2rem 0;
-        flex-wrap: wrap;
-    }
-
-    .user-type-btn {
-        padding: 12px 30px;
-        border: 2px solid var(--primary-color);
-        background: transparent;
-        color: var(--primary-color);
-        border-radius: 50px;
+        box-shadow: var(--shadow-light);
         transition: all 0.3s ease;
-        cursor: pointer;
-        font-weight: 500;
-        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
     }
 
-    .user-type-btn.active,
-    .user-type-btn:hover {
-        background: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
-        transform: translateY(-2px);
+    .blog-post:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
     }
 
-    /* Login Form */
-    .login-form {
-        max-width: 400px;
-        margin: 2rem auto;
-        background: var(--card-bg);
-        padding: 2rem;
+    .blog-post img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: var(--border-radius);
+        margin-bottom: 1rem;
+    }
+
+    .blog-post h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+    }
+
+    .blog-post .meta {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .blog-post p {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .blog-post a.btn-main {
+        align-self: flex-start;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        padding: 1.5rem;
+        background-color: var(--card-bg);
         border-radius: var(--border-radius);
         box-shadow: var(--shadow-light);
-        border: 1px solid #e5e7eb;
     }
 
-    .login-form h4 {
-        color: var(--text-dark);
-        text-align: center;
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
+    .sidebar h5 {
+        font-size: 1.25rem;
         font-weight: 600;
-    }
-
-    .login-form .form-control {
-        background: #f8fafc;
-        border: 1px solid #e5e7eb;
+        margin-bottom: 1rem;
         color: var(--text-dark);
-        border-radius: 8px;
-        padding: 12px 15px;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
     }
 
-    .login-form .form-control::placeholder {
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .sidebar ul li {
+        margin-bottom: 0.75rem;
+    }
+
+    .sidebar ul li a {
         color: var(--text-light);
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
     }
 
-    .login-form .form-control:focus {
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.1);
-        background: #ffffff;
+    .sidebar ul li a:hover {
+        color: var(--primary-color);
     }
 
-    .login-form .form-check {
+    .sidebar .recent-post {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         margin-bottom: 1rem;
     }
 
-    .login-form .form-check-label {
-        color: var(--text-dark);
-        font-size: 0.9rem;
+    .sidebar .recent-post img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: var(--border-radius);
+        margin-right: 1rem;
     }
 
-    .login-form a {
-        color: var(--primary-color);
-        font-size: 0.9rem;
-        transition: color 0.3s ease;
-    }
-
-    .login-form a:hover {
-        color: #4f46e5;
-    }
-
-    .login-form .btn-main {
-        width: 100%;
-        padding: 12px;
-        font-size: 1rem;
+    .sidebar .recent-post h6 {
+        font-size: 0.95rem;
         font-weight: 600;
-        border-radius: var(--border-radius);
-        transition: all 0.3s ease;
+        color: var(--text-dark);
+        margin: 0;
     }
 
-    .login-form .btn-main:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-hover);
+    .sidebar .recent-post .meta {
+        font-size: 0.8rem;
+        color: var(--text-light);
     }
 
-    .login-form p {
-        font-size: 0.9rem;
+    /* CTA Section */
+    .cta-section {
+        background: var(--gradient-bg);
+        color: white;
+        padding: 80px 0;
         text-align: center;
-        margin-top: 1rem;
+        position: relative;
     }
 
-    /* Flash Messages */
-    .alert {
-        padding: 10px;
-        margin-bottom: 1rem;
-        border-radius: var(--border-radius);
-        font-size: 0.9rem;
-        text-align: center;
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 1;
     }
 
-    .alert-success {
-        background-color: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
+    .cta-section .container {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
     }
 
-    .alert-danger {
-        background-color: #f8d7da;
-        color: #721c24;
-        border: 1px solid #f5c6cb;
+    .cta-section h2 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.025em;
+    }
+
+    .cta-section p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        opacity: 0.9;
     }
 
     /* Footer */
@@ -247,8 +253,13 @@
         background-color: var(--secondary-color);
     }
 
+    .footer-light .container {
+        max-width: 1200px;
+    }
+
     .footer-light .social-icons {
         display: flex;
+        justify-content: flex-start;
         gap: 1rem;
         margin-top: 1.5rem;
     }
@@ -314,48 +325,35 @@
     }
 
     /* Responsive Design */
+    @media (max-width: 992px) {
+        .blog-post {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar {
+            margin-top: 2rem;
+        }
+    }
+
     @media (max-width: 768px) {
         .hero-section {
             padding: 80px 0 60px;
         }
 
         .hero-section h1 {
-            font-size: 2.25rem;
+            font-size: 2rem;
         }
 
         .hero-section .lead {
             font-size: 1rem;
         }
 
-        .login-section {
-            padding: 60px 0;
+        .blog-post h3 {
+            font-size: 1.25rem;
         }
 
-        .login-section h2 {
-            font-size: 1.75rem;
-        }
-
-        .user-type-selector {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .user-type-btn {
-            width: 100%;
-            max-width: 250px;
-        }
-
-        .login-form {
-            padding: 1.5rem;
-            margin: 1rem;
-        }
-
-        .footer-light .row {
-            text-align: center;
-        }
-
-        .footer-light .social-icons {
-            justify-content: center;
+        .blog-post img {
+            height: 150px;
         }
     }
 
@@ -368,39 +366,31 @@
             font-size: 0.9rem;
         }
 
-        .login-section h2 {
+        .cta-section h2 {
             font-size: 1.5rem;
         }
 
-        .login-form {
-            padding: 1rem;
+        .blog-post img {
+            height: 120px;
         }
-    }
-
-    /* Section Spacing */
-    .pt-120 {
-        padding-top: 80px;
-    }
-
-    .pb-90 {
-        padding-bottom: 80px;
     }
 
     /* WOW Animations */
     .wow {
         visibility: hidden;
     }
-</style>
+    </style>
 </head>
 
 <body>
     <div id="wrapper">
         <a href="#top" id="back-to-top"></a>
         
-        <!-- Page preloader -->
+        <!-- page preloader begin -->
         <div id="de-loader"></div>
+        <!-- page preloader close -->
 
-        <!-- Header -->
+        <!-- header begin -->
         <header class="transparent header-light header-float">
             <div class="container-float">
                 <div class="row">
@@ -408,14 +398,15 @@
                         <div class="header-inner">
                             <div class="de-flex sm-pt10">
                                 <div class="de-flex-col">
-                                    <!-- Logo -->
+                                    <!-- logo begin -->
                                     <div id="logo">
                                         <a href="/">
-                                            <img class="logo-main" src="/static/images/logo.webp" alt="">
-                                            <img class="logo-scroll" src="/static/images/logo.webp" alt="">
-                                            <img class="logo-mobile" src="/static/images/logo.webp" alt="">
+                                            <img class="logo-main" src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
+                                            <img class="logo-scroll" src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
+                                            <img class="logo-mobile" src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
                                         </a>
                                     </div>
+                                    <!-- logo close -->
                                 </div>
                                 <div class="de-flex-col header-col-mid">
                                     <ul id="mainmenu">
@@ -429,9 +420,8 @@
                                             </ul>
                                         </li>
                                         <li><a class="menu-item" href="/case-studies">Case Studies</a></li>
-                                        <li><a class="menu-item" href="/blog">Blog</a></li>
+                                        <li><a class="menu-item active" href="/blog">Blog</a></li>
                                         <li><a class="menu-item" href="/contact">Contact</a></li>
-                                        <li><a class="menu-item active" href="/login_page">Login</a></li>
                                     </ul>
                                 </div>
                                 <div class="de-flex-col">
@@ -446,8 +436,9 @@
                 </div>
             </div>
         </header>
+        <!-- header close -->
 
-        <!-- Content -->
+        <!-- content begin -->
         <div class="no-bottom no-top" id="content">
             <div id="top"></div>
 
@@ -455,68 +446,106 @@
             <section class="hero-section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8 mx-auto">
-                            <h1 class="wow fadeInUp" data-wow-delay=".2s">Login to Your Account</h1>
-                            <p class="lead wow fadeInUp" data-wow-delay=".4s">Access your 1nFloU account to manage your influencer marketing campaigns.</p>
+                        <div class="col-lg-12 mx-auto">
+                            <h1 class="wow fadeInUp" data-wow-delay=".2s">1nFloU Blog</h1>
+                            <p class="lead wow fadeInUp" data-wow-delay=".4s">Discover the latest insights, tips, and trends in influencer marketing to grow your brand.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Login Form Section -->
-            <section class="login-section pt-120 pb-90">
+            <!-- Blog Section -->
+            <section class="blog-section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8 mx-auto text-center">
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Sign In</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".4s">Enter your email and password to log in.</p>
+                        <div class="col-lg-8">
+                            <div class="blog-post wow fadeInUp" data-wow-delay=".2s">
+                                <img src="{{ url_for('static', filename='images/blog/post1.jpg') }}" alt="Blog Post 1">
+                                <h3><a href="/blog/post1">How to Choose the Right Influencer for Your Brand</a></h3>
+                                <div class="meta">Posted on September 10, 2025 by Admin</div>
+                                <p>Learn key strategies to identify and collaborate with influencers who align with your brand values and target audience.</p>
+                                <a href="/blog/post1" class="btn-main fx-slide"><span>Read More</span></a>
+                            </div>
+                            <div class="blog-post wow fadeInUp" data-wow-delay=".3s">
+                                <img src="{{ url_for('static', filename='images/blog/post2.jpg') }}" alt="Blog Post 2">
+                                <h3><a href="/blog/post2">Maximizing ROI with Influencer Marketing Campaigns</a></h3>
+                                <div class="meta">Posted on September 5, 2025 by Admin</div>
+                                <p>Discover proven techniques to optimize your influencer campaigns for maximum engagement and conversions.</p>
+                                <a href="/blog/post2" class="btn-main fx-slide"><span>Read More</span></a>
+                            </div>
+                            <div class="blog-post wow fadeInUp" data-wow-delay=".4s">
+                                <img src="{{ url_for('static', filename='images/blog/post3.jpg') }}" alt="Blog Post 3">
+                                <h3><a href="/blog/post3">Top Influencer Marketing Trends for 2025</a></h3>
+                                <div class="meta">Posted on August 28, 2025 by Admin</div>
+                                <p>Stay ahead of the curve with the latest trends shaping the influencer marketing landscape in 2025.</p>
+                                <a href="/blog/post3" class="btn-main fx-slide"><span>Read More</span></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="sidebar wow fadeInUp" data-wow-delay=".2s">
+                                <div class="widget">
+                                    <h5>Categories</h5>
+                                    <ul>
+                                        <li><a href="/blog/category/influencer-marketing">Influencer Marketing</a></li>
+                                        <li><a href="/blog/category/campaign-strategy">Campaign Strategy</a></li>
+                                        <li><a href="/blog/category/social-media">Social Media</a></li>
+                                        <li><a href="/blog/category/brand-growth">Brand Growth</a></li>
+                                    </ul>
+                                </div>
+                                <div class="widget mt-4">
+                                    <h5>Recent Posts</h5>
+                                    <div class="recent-post">
+                                        <img src="{{ url_for('static', filename='images/blog/post1-thumb.jpg') }}" alt="Recent Post 1">
+                                        <div>
+                                            <h6><a href="/blog/post1">Choosing the Right Influencer</a></h6>
+                                            <div class="meta">September 10, 2025</div>
+                                        </div>
+                                    </div>
+                                    <div class="recent-post">
+                                        <img src="{{ url_for('static', filename='images/blog/post2-thumb.jpg') }}" alt="Recent Post 2">
+                                        <div>
+                                            <h6><a href="/blog/post2">Maximizing Campaign ROI</a></h6>
+                                            <div class="meta">September 5, 2025</div>
+                                        </div>
+                                    </div>
+                                    <div class="recent-post">
+                                        <img src="{{ url_for('static', filename='images/blog/post3-thumb.jpg') }}" alt="Recent Post 3">
+                                        <div>
+                                            <h6><a href="/blog/post3">2025 Marketing Trends</a></h6>
+                                            <div class="meta">August 28, 2025</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mt-4">
-                        <div class="col-lg-8 mx-auto">
-                            <!-- User Type Selector -->
-                            <div class="user-type-selector wow fadeInUp" data-wow-delay=".4s">
-                                <button class="user-type-btn active" data-type="brand">I'm a Brand</button>
-                                <button class="user-type-btn" data-type="influencer">I'm an Influencer</button>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 mx-auto text-center">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Ready to Grow Your Brand?</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Join thousands of brands using 1nFloU to connect with influencers and drive results.</p>
+                            <div class="hero-buttons wow fadeInUp" data-wow-delay=".6s">
+                                <a href="#" class="btn-main fx-slide me-3"><span>Start Free Trial</span></a>
+                                <a href="/contact" class="btn-main btn-dark-trans fx-slide"><span>Contact Sales</span></a>
                             </div>
-                            <!-- Flash Messages -->
-                            {% with messages = get_flashed_messages(with_categories=true) %}
-                                {% if messages %}
-                                    {% for category, message in messages %}
-                                        <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} wow fadeInUp" data-wow-delay=".2s">
-                                            {{ message }}
-                                        </div>
-                                    {% endfor %}
-                                {% endif %}
-                            {% endwith %}
-                            <!-- Login Form -->
-                            <form class="login-form wow fadeInUp" data-wow-delay=".6s" action="/login_page" method="POST">
-                                <div class="mb-3">
-                                    <input type="email" class="form-control" name="email" placeholder="Email Address" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="password" class="form-control" name="password" placeholder="Password" required>
-                                </div>
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
-                                    <label class="form-check-label" for="rememberMe">Remember me</label>
-                                    <a href="/forget" class="float-end">Forgot password?</a>
-                                </div>
-                                <button type="submit" class="btn-main fx-slide w-100">Login</button>
-                                <p class="mt-3 text-center">Don't have an account? <a href="/register_page" id="show-register">Register now</a></p>
-                            </form>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
+ |       <!-- content close -->
 
-        <!-- Footer -->
+        <!-- footer begin -->
         <footer class="footer-light">
             <div class="container">
                 <div class="row gx-5">
                     <div class="col-lg-4 col-sm-6">
-                        <img src="/static/images/logo.webp" alt="">
+                        <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
                         <div class="spacer-20"></div>
                         <p>1nFloU connects brands with the perfect influencers to create authentic content that drives engagement and conversions.</p>
                         <div class="social-icons mb-sm-30">
@@ -539,7 +568,6 @@
                                         <li><a href="/about">About Us</a></li>
                                         <li><a href="/blog">Blog</a></li>
                                         <li><a href="/contact">Contact</a></li>
-                                        <li><a href="/login_page">Login</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -567,7 +595,7 @@
                             info@detwet.com
                             <div class="spacer-20"></div>
                             <div class="fw-bold text-dark"><i class="icofont-phone me-2 id-color"></i>Make a Phone Call</div>
-                            +27 84 866 2418
+                            +27 84 866 2418                           
                         </div>
                     </div>
                 </div>
@@ -590,30 +618,21 @@
                 </div>
             </div>
         </footer>
+        <!-- footer close -->
     </div>
 
     <!-- Javascript Files -->
-    <script src="/static/js/vendors.js"></script>
-    <script src="/static/js/designesia.js"></script>
+    <script src="{{ url_for('static', filename='js/vendors.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/designesia.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // User type selection
-            const userTypeButtons = document.querySelectorAll('.user-type-btn');
-            userTypeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    userTypeButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    // Store user type in a hidden input
-                    document.getElementById('user_type').value = this.getAttribute('data-type');
-                });
-            });
-
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     if (targetId === '#') return;
+                    
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         window.scrollTo({
@@ -623,51 +642,6 @@
                     }
                 });
             });
-
-            // Form validation
-            const loginForm = document.querySelector('.login-form');
-            if (loginForm) {
-                loginForm.addEventListener('submit', function(e) {
-                    const emailInput = loginForm.querySelector('input[name="email"]');
-                    const passwordInput = loginForm.querySelector('input[name="password"]');
-                    let isValid = true;
-
-                    // Clear previous error states
-                    emailInput.classList.remove('is-invalid');
-                    passwordInput.classList.remove('is-invalid');
-
-                    // Email validation
-                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailInput.value.trim() || !emailPattern.test(emailInput.value)) {
-                        isValid = false;
-                        emailInput.classList.add('is-invalid');
-                    }
-
-                    // Password validation
-                    if (!passwordInput.value.trim()) {
-                        isValid = false;
-                        passwordInput.classList.add('is-invalid');
-                    }
-
-                    if (!isValid) {
-                        e.preventDefault();
-                    }
-                });
-            }
-
-            // Add invalid input styling
-            const style = document.createElement('style');
-            style.textContent = `
-                .form-control.is-invalid {
-                    border-color: #dc3545;
-                    background-color: rgba(220, 53, 69, 0.1);
-                }
-                .form-control.is-invalid:focus {
-                    border-color: #dc3545;
-                    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-                }
-            `;
-            document.head.appendChild(style);
         });
     </script>
 </body>

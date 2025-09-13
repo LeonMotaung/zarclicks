@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>1nFloU — About Us</title>
+    <title>404 - Page Not Found - 1nFloU Influencer Marketing Platform</title>
     <link rel="icon" href="{{ url_for('static', filename='images/icon.webp') }}" type="image/gif" sizes="16x16">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="About 1nFloU — Learn about our mission, team, and values in influencer marketing" name="description">
-    <meta content="influencer marketing, about us, brand collaboration, content creation" name="keywords">
+    <meta content="Page not found on 1nFloU — Affordable influencer marketing platform for brands and creators" name="description">
+    <meta content="404 error, page not found, influencer marketing" name="keywords">
     <meta content="" name="author">
     <!-- CSS Files -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bootstrap">
@@ -44,17 +44,20 @@
         color: var(--text-dark);
     }
 
-    /* Hero Section */
-    .hero-section {
+    /* Error Section */
+    .error-section {
         background: var(--gradient-bg);
         color: white;
         padding: 120px 0 80px;
         text-align: center;
         position: relative;
         overflow: hidden;
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
     }
 
-    .hero-section::before {
+    .error-section::before {
         content: '';
         position: absolute;
         top: 0;
@@ -65,21 +68,28 @@
         z-index: 1;
     }
 
-    .hero-section .container {
+    .error-section .container {
         position: relative;
         z-index: 2;
+        max-width: 800px;
     }
 
-    .hero-section h1 {
-        font-size: 3.5rem;
+    .error-section h1 {
+        font-size: 6rem;
         font-weight: 800;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
+        margin-bottom: 1rem;
+        line-height: 1.1;
         letter-spacing: -0.025em;
     }
 
-    .hero-section .lead {
-        font-size: 1.25rem;
+    .error-section h2 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    .error-section p {
+        font-size: 1.125rem;
         margin-bottom: 2rem;
         opacity: 0.9;
         max-width: 600px;
@@ -87,206 +97,9 @@
         margin-right: auto;
     }
 
-    /* About Section */
-    .about-section {
-        padding: 80px 0;
-        background-color: var(--secondary-color);
-    }
-
-    .about-section h2 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        letter-spacing: -0.025em;
-    }
-
-    .about-section p {
-        font-size: 1.1rem;
-        color: var(--text-light);
-        max-width: 800px;
-        margin: 0 auto 2rem;
-        text-align: center;
-    }
-
-    /* Team Section */
-    .team-section {
-        padding: 80px 0;
-    }
-
-    .team-section h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-
-    .team-section p {
-        color: var(--text-light);
+    .error-section .btn-main {
+        padding: 0.75rem 1.5rem;
         font-size: 1rem;
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        text-align: center;
-    }
-
-    .team-card {
-        background-color: var(--card-bg);
-        border-radius: var(--border-radius);
-        padding: 2rem;
-        height: 100%;
-        transition: all 0.3s ease;
-        box-shadow: var(--shadow-light);
-        border: 1px solid #e5e7eb;
-        text-align: center;
-    }
-
-    .team-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-hover);
-    }
-
-    .team-card img {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 1.5rem;
-    }
-
-    .team-card h4 {
-        color: var(--text-dark);
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-    }
-
-    .team-card p {
-        color: var(--text-light);
-        font-size: 0.95rem;
-        margin-bottom: 1rem;
-    }
-
-    .team-card .social-icons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    .team-card .social-icons a {
-        color: var(--text-light);
-        font-size: 1.2rem;
-        transition: color 0.3s ease;
-    }
-
-    .team-card .social-icons a:hover {
-        color: var(--primary-color);
-    }
-
-    /* Values Section */
-    .values-section {
-        padding: 80px 0;
-        background-color: var(--secondary-color);
-    }
-
-    .values-section h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-
-    .values-section p {
-        color: var(--text-light);
-        font-size: 1rem;
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        text-align: center;
-    }
-
-    .value-card {
-        background-color: var(--card-bg);
-        border-radius: var(--border-radius);
-        padding: 2rem;
-        height: 100%;
-        transition: all 0.3s ease;
-        box-shadow: var(--shadow-light);
-        border: 1px solid #e5e7eb;
-        text-align: center;
-    }
-
-    .value-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-hover);
-    }
-
-    .value-icon {
-        font-size: 2.5rem;
-        color: var(--primary-color);
-        margin-bottom: 1.5rem;
-    }
-
-    .value-card h4 {
-        color: var(--text-dark);
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-
-    .value-card p {
-        color: var(--text-light);
-        font-size: 0.95rem;
-    }
-
-    /* CTA Section */
-    .cta-section {
-        background: var(--gradient-bg);
-        color: white;
-        padding: 80px 0;
-        text-align: center;
-        position: relative;
-    }
-
-    .cta-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.15);
-        z-index: 1;
-    }
-
-    .cta-section .container {
-        position: relative;
-        z-index: 2;
-    }
-
-    .cta-section h2 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        letter-spacing: -0.025em;
-    }
-
-    .cta-section p {
-        font-size: 1.1rem;
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        opacity: 0.9;
-    }
-
-    .cta-section .btn-main {
-        padding: 14px 32px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        border-radius: var(--border-radius);
-        transition: all 0.3s ease;
-    }
-
-    .cta-section .btn-main:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-hover);
     }
 
     /* Footer */
@@ -295,8 +108,13 @@
         background-color: var(--secondary-color);
     }
 
+    .footer-light .container {
+        max-width: 1200px;
+    }
+
     .footer-light .social-icons {
         display: flex;
+        justify-content: flex-start;
         gap: 1rem;
         margin-top: 1.5rem;
     }
@@ -363,41 +181,20 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
-        .hero-section {
+        .error-section {
             padding: 80px 0 60px;
         }
 
-        .hero-section h1 {
-            font-size: 2.25rem;
+        .error-section h1 {
+            font-size: 4rem;
         }
 
-        .hero-section .lead {
+        .error-section h2 {
+            font-size: 1.75rem;
+        }
+
+        .error-section p {
             font-size: 1rem;
-        }
-
-        .about-section,
-        .team-section,
-        .values-section {
-            padding: 60px 0;
-        }
-
-        .about-section h2,
-        .team-section h2,
-        .values-section h2 {
-            font-size: 1.75rem;
-        }
-
-        .team-card,
-        .value-card {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-section {
-            padding: 60px 0;
-        }
-
-        .cta-section h2 {
-            font-size: 1.75rem;
         }
 
         .footer-light .row {
@@ -410,40 +207,24 @@
     }
 
     @media (max-width: 576px) {
-        .hero-section h1 {
-            font-size: 1.75rem;
+        .error-section h1 {
+            font-size: 3rem;
         }
 
-        .hero-section .lead {
-            font-size: 0.9rem;
-        }
-
-        .about-section h2,
-        .team-section h2,
-        .values-section h2 {
+        .error-section h2 {
             font-size: 1.5rem;
         }
 
-        .team-card img {
-            width: 100px;
-            height: 100px;
+        .error-section p {
+            font-size: 0.9rem;
         }
-    }
-
-    /* Section Spacing */
-    .pt-120 {
-        padding-top: 80px;
-    }
-
-    .pb-90 {
-        padding-bottom: 80px;
     }
 
     /* WOW Animations */
     .wow {
         visibility: hidden;
     }
-</style>
+    </style>
 </head>
 
 <body>
@@ -475,7 +256,7 @@
                                 <div class="de-flex-col header-col-mid">
                                     <ul id="mainmenu">
                                         <li><a class="menu-item" href="/">Home</a></li>
-                                        <li><a class="menu-item active" href="/about">About Us</a></li>
+                                        <li><a class="menu-item" href="/about">About Us</a></li>
                                         <li><a class="menu-item" href="/services">Services</a>
                                             <ul>
                                                 <li><a class="menu-item" href="/services">All Services</a></li>
@@ -490,7 +271,7 @@
                                 </div>
                                 <div class="de-flex-col">
                                     <div class="menu_side_area">          
-                                        <a class="btn-main fx-slide" href="/"><span>Login / Register</span></a>
+                                        <a class="btn-main fx-slide" href="/login_page"><span>Login / Register</span></a>
                                         <span id="menu-btn"></span>
                                     </div>
                                 </div>                            
@@ -506,130 +287,18 @@
         <div class="no-bottom no-top" id="content">
             <div id="top"></div>
 
-            <!-- Hero Section -->
-            <section class="hero-section">
+            <!-- Error Section -->
+            <section class="error-section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8 mx-auto">
-                            <h1 class="wow fadeInUp" data-wow-delay=".2s">About 1nFloU</h1>
-                            <p class="lead wow fadeInUp" data-wow-delay=".4s">Empowering brands and creators to build authentic connections through innovative influencer marketing solutions.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- About Section -->
-            <section class="about-section pt-120 pb-90">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto text-center">
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Our Mission</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".4s">At 1nFloU, our mission is to revolutionize influencer marketing by providing a seamless platform that connects brands with the right creators to deliver impactful, authentic content that resonates with audiences worldwide.</p>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">Founded in 2023, we’ve grown into a trusted platform used by thousands of brands and influencers. Our innovative tools and data-driven approach ensure every campaign maximizes reach, engagement, and ROI.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Team Section -->
-            <section class="team-section pt-120 pb-90">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto text-center">
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Meet Our Team</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".4s">Our passionate team is dedicated to helping you succeed in influencer marketing.</p>
-                        </div>
-                    </div>
-                    <div class="row g-4 mt-4">
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                            <div class="team-card">
-                                <img src="{{ url_for('static', filename='images/team/team1.webp') }}" alt="Team Member">
-                                <h4>Jane Doe</h4>
-                                <p>CEO & Founder</p>
-                                <p>Jane leads with a vision to transform influencer marketing with cutting-edge technology.</p>
-                                <div class="social-icons">
-                                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                                </div>
+                        <div class="col-lg-12 mx-auto">
+                            <h1 class="wow fadeInUp" data-wow-delay=".2s">404</h1>
+                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Oops! Page Not Found</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".6s">It looks like the page you're looking for doesn't exist or has been moved. Let's get you back on track!</p>
+                            <div class="wow fadeInUp" data-wow-delay=".8s">
+                                <a href="/" class="btn-main fx-slide me-3"><span>Return to Home</span></a>
+                                <a href="/contact" class="btn-main btn-dark-trans fx-slide"><span>Contact Support</span></a>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                            <div class="team-card">
-                                <img src="{{ url_for('static', filename='images/team/team2.webp') }}" alt="Team Member">
-                                <h4>John Smith</h4>
-                                <p>CTO</p>
-                                <p>John drives our platform’s innovation, ensuring seamless performance and scalability.</p>
-                                <div class="social-icons">
-                                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa-brands fa-github"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                            <div class="team-card">
-                                <img src="{{ url_for('static', filename='images/team/team3.webp') }}" alt="Team Member">
-                                <h4>Emily Brown</h4>
-                                <p>Head of Marketing</p>
-                                <p>Emily crafts strategies to connect brands and creators for maximum impact.</p>
-                                <div class="social-icons">
-                                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Values Section -->
-            <section class="values-section pt-120 pb-90">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto text-center">
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Our Core Values</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".4s">The principles that guide everything we do at 1nFloU.</p>
-                        </div>
-                    </div>
-                    <div class="row g-4 mt-4">
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                            <div class="value-card">
-                                <div class="value-icon">
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <h4>Authenticity</h4>
-                                <p>We believe in fostering genuine connections between brands and creators.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                            <div class="value-card">
-                                <div class="value-icon">
-                                    <i class="fas fa-lightbulb"></i>
-                                </div>
-                                <h4>Innovation</h4>
-                                <p>We push boundaries with cutting-edge tools to stay ahead in influencer marketing.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                            <div class="value-card">
-                                <div class="value-icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <h4>Community</h4>
-                                <p>We build a supportive ecosystem for brands and creators to thrive together.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA Section -->
-            <section class="cta-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto">
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Join the 1nFloU Community</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".4s">Ready to take your influencer marketing to the next level? Sign up today!</p>
-                            <a href="/" class="btn-main fx-slide wow fadeInUp" data-wow-delay=".6s"><span>Get Started</span></a>
                         </div>
                     </div>
                 </div>

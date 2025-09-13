@@ -1,353 +1,626 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>1nFloU — Influencer Marketing Services</title>
-    <link rel="icon" href="/static/images/icon.webp" type="image/gif" sizes="16x16">
+    <title>1nFloU — Influencer Marketing Platform</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/icon.webp') }}" type="image/gif" sizes="16x16">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="1nFloU — Influencer Marketing Services to connect brands with influencers" name="description">
-    <meta content="influencer marketing, brand collaboration, campaign management, analytics" name="keywords">
+    <meta content="1nFloU — Connect with influencers, manage campaigns, and track performance" name="description">
+    <meta content="influencer marketing, social media, brand collaboration, content creation" name="keywords">
     <meta content="" name="author">
     <!-- CSS Files -->
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap">
-    <link href="/static/css/vendors.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/coloring.css" rel="stylesheet" type="text/css">
-    <!-- Color scheme -->
-    <link id="colors" href="/static/css/colors/scheme-01.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bootstrap">
+    <link href="{{ url_for('static', filename='css/vendors.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/coloring.css') }}" rel="stylesheet" type="text/css">
+    <!-- color scheme -->
+    <link id="colors" href="{{ url_for('static', filename='css/colors/scheme-01.css') }}" rel="stylesheet" type="text/css">
     <!-- Font Awesome for enhanced icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS Variables for consistent theming */
-        :root {
-            --primary-color: #6366f1;
-            --secondary-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --border-radius: 12px;
-            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
-        }
+    /* CSS Variables for consistent theming */
+    :root {
+        --primary-color: #6366f1;
+        --secondary-color: #f8fafc;
+        --card-bg: #ffffff;
+        --text-dark: #1f2937;
+        --text-light: #6b7280;
+        --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --border-radius: 12px;
+        --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
 
-        /* Global Reset */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    /* Global Reset for Consistent Spacing */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--secondary-color);
-        }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+    }
 
-        /* Hero Section */
-        .jarallax {
-            position: relative;
-            background-size: cover;
-            background-position: center;
-            min-height: 500px;
-        }
+    /* Landing Page Sections */
+    .hero-section {
+        background: var(--gradient-bg);
+        color: white;
+        padding: 120px 0 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .jarallax-img {
-            position: absolute;
-            object-fit: cover;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 1;
+    }
+
+    .hero-section .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        letter-spacing: -0.025em;
+    }
+
+    .hero-section .lead {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .hero-buttons .btn-main {
+        padding: 14px 32px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: var(--border-radius);
+        transition: all 0.3s ease;
+    }
+
+    .hero-buttons .btn-main:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    /* CTA Section */
+    .cta-section {
+        background: var(--gradient-bg);
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+        position: relative;
+    }
+
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 1;
+    }
+
+    .cta-section .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .cta-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.025em;
+    }
+
+    .cta-section p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        opacity: 0.9;
+    }
+
+    /* Feature Cards */
+    .feature-card {
+        background-color: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        height: 100%;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-light);
+        border: 1px solid #e5e7eb;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+    }
+
+    .feature-card h4 {
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+        font-weight: 600;
+        font-size: 1.25rem;
+    }
+
+    .feature-card p {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Brands Section */
+    .brands-section {
+        padding: 80px 0;
+        background-color: var(--secondary-color);
+    }
+
+    .brands-section h3 {
+        color: var(--text-dark);
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .brands-section p {
+        color: var(--text-light);
+        font-size: 1rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        text-align: center;
+    }
+
+    .brand-logo {
+        filter: grayscale(100%);
+        opacity: 0.7;
+        transition: all 0.3s ease;
+        max-height: 50px;
+        width: auto;
+        object-fit: contain;
+    }
+
+    .brand-logo:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+    }
+
+    /* Trending Posts Section */
+    .trending-posts-section {
+        padding: 80px 0;
+    }
+
+    .trending-posts-section h2 {
+        color: var(--text-dark);
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .trending-posts-section p {
+        color: var(--text-light);
+        font-size: 1rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        text-align: center;
+    }
+
+    .post-card {
+        background-color: var(--card-bg);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-light);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .post-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .post-image {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .post-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .post-content h5 {
+        color: var(--text-dark);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+    }
+
+    .post-content p {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .post-stats {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--text-light);
+        font-size: 0.85rem;
+        margin-top: auto;
+    }
+
+    .post-stats span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* User Type Selector */
+    .user-type-selector {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+    }
+
+    .user-type-btn {
+        padding: 12px 30px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background: transparent;
+        color: white;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 1rem;
+    }
+
+    .user-type-btn.active,
+    .user-type-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+    }
+
+    /* Auth Forms */
+    .auth-forms {
+        display: none;
+        max-width: 400px;
+        margin: 2rem auto;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .auth-forms.active {
+        display: block;
+    }
+
+    .auth-forms h4 {
+        color: white;
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+    }
+
+    .auth-forms .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        border-radius: 8px;
+        padding: 12px 15px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+    }
+
+    .auth-forms .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .auth-forms .form-control:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+
+    .auth-forms .form-check {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .auth-forms .form-check-label {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9rem;
+    }
+
+    .auth-forms a {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+    }
+
+    .auth-forms a:hover {
+        color: white;
+    }
+
+    .auth-forms .btn-main {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: var(--border-radius);
+        transition: all 0.3s ease;
+    }
+
+    .auth-forms .btn-main:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .auth-forms p {
+        font-size: 0.9rem;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    /* Platform Badges */
+    .platform-badges {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .platform-badge {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 8px 16px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .platform-badge:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    /* Footer */
+    .footer-light {
+        padding: 60px 0 20px;
+        background-color: var(--secondary-color);
+    }
+
+    .footer-light .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .footer-light .social-icons a {
+        color: var(--text-dark);
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    .footer-light .social-icons a:hover {
+        color: var(--primary-color);
+    }
+
+    .footer-light .widget h5 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .footer-light .widget ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-light .widget ul li {
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-light .widget ul li a {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+    }
+
+    .footer-light .widget ul li a:hover {
+        color: var(--primary-color);
+    }
+
+    .subfooter {
+        padding: 20px 0;
+        border-top: 1px solid #e5e7eb;
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--text-light);
+    }
+
+    .subfooter .menu-simple {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .subfooter .menu-simple li a {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+    }
+
+    .subfooter .menu-simple li a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: 80px 0 60px;
         }
 
         .hero-section h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            letter-spacing: -0.025em;
+            font-size: 2.25rem;
         }
 
         .hero-section .lead {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 600px;
+            font-size: 1rem;
         }
 
-        /* Marquee Section */
-        .section-dark {
-            background: var(--gradient-bg);
+        .hero-buttons {
+            flex-direction: column;
+            align-items: center;
         }
 
-        .de-marquee-list-1, .de-marquee-list-2 {
-            display: flex;
-            animation: marquee 20s linear infinite;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Services Section */
-        .services-section {
-            padding: 80px 0;
-        }
-
-        .subtitle {
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .services-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-            height: 100%;
-        }
-
-        .service-card img {
-            width: 90px;
-            padding: 15px;
-            border-radius: 10px;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
+        .hero-buttons .btn-main {
+            width: 100%;
+            max-width: 300px;
             margin-bottom: 1rem;
         }
 
-        .btn-plus {
-            display: inline-flex;
+        .cta-section {
+            padding: 60px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 1.75rem;
+        }
+
+        .user-type-selector {
+            flex-direction: column;
             align-items: center;
-            color: var(--primary-color);
-            font-weight: 500;
         }
 
-        .btn-plus i {
-            margin-right: 8px;
+        .user-type-btn {
+            width: 100%;
+            max-width: 250px;
         }
 
-        .btn-plus:hover {
-            color: #4f46e5;
+        .feature-card,
+        .post-card {
+            margin-bottom: 1.5rem;
         }
 
-        /* About Section */
-        .about-section {
-            background: rgba(99, 102, 241, 0.1);
-            padding: 80px 0;
+        .brands-section .brand-logo {
+            max-height: 40px;
         }
 
-        .ul-check {
-            list-style: none;
-            padding: 0;
-        }
-
-        .ul-check li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 10px;
-        }
-
-        .ul-check li:before {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: var(--primary-color);
-            position: absolute;
-            left: 0;
-            top: 5px;
-        }
-
-        /* Why Choose Us Section */
-        .why-choose-us-section {
-            padding: 80px 0;
-        }
-
-        .ol-style-1 {
-            list-style: decimal;
-            padding-left: 20px;
-        }
-
-        .ol-style-1 li {
-            margin-bottom: 10px;
-        }
-
-        .color-2 li:before {
-            color: #764ba2;
-        }
-
-        /* Testimonials Section */
-        .testimonials-section {
-            background: rgba(99, 102, 241, 0.1);
-            padding: 80px 0;
-        }
-
-        .owl-carousel .owl-item {
-            padding: 20px;
-        }
-
-        .de-rating-ext {
-            margin: 10px 0;
-        }
-
-        .d-stars i {
-            color: #f1c40f;
-        }
-
-        /* Pricing Section */
-        .pricing-section {
-            padding: 80px 0;
-        }
-
-        .pricing-card {
-            background: var(--gradient-bg);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            color: white;
-        }
-
-        .pricing-card h2 {
-            font-size: 2rem;
-        }
-
-        .pricing-card img {
-            width: 100px;
-        }
-
-        .ul-check.white li:before {
-            color: white;
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            background: rgba(99, 102, 241, 0.1);
-            padding: 80px 0;
-        }
-
-        .accordion-section-title {
-            cursor: pointer;
-            padding: 15px;
-            background: var(--card-bg);
-            margin-bottom: 10px;
-            border-radius: 8px;
-        }
-
-        .accordion-section-content {
-            display: none;
-            padding: 15px;
-            background: var(--card-bg);
-            border-radius: 8px;
-        }
-
-        .accordion-section-title.active + .accordion-section-content {
-            display: block;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 80px 0;
-        }
-
-        .contact-info {
-            background: var(--gradient-bg);
-            padding: 40px;
-            border-radius: var(--border-radius);
-            color: white;
-        }
-
-        .contact-form {
-            background: rgba(99, 102, 241, 0.1);
-            padding: 30px;
-            border-radius: var(--border-radius);
-        }
-
-        .form-control {
-            background: #f8fafc;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 12px;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.1);
-        }
-
-        /* Footer */
-        .footer-light {
-            padding: 60px 0 20px;
-            background-color: var(--secondary-color);
-        }
-
-        .social-icons a {
-            color: var(--text-dark);
-            font-size: 1.2rem;
-        }
-
-        .social-icons a:hover {
-            color: var(--primary-color);
-        }
-
-        .subfooter {
-            border-top: 1px solid #e5e7eb;
-            padding: 20px 0;
+        .footer-light .row {
             text-align: center;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 2.25rem;
-            }
+        .footer-light .social-icons {
+            justify-content: center;
+        }
+    }
 
-            .hero-section .lead {
-                font-size: 1rem;
-            }
-
-            .services-section, .about-section, .why-choose-us-section, .testimonials-section, .pricing-section, .faq-section, .contact-section {
-                padding: 60px 0;
-            }
-
-            .service-card, .pricing-card {
-                margin-bottom: 20px;
-            }
+    @media (max-width: 576px) {
+        .hero-section h1 {
+            font-size: 1.75rem;
         }
 
-        @media (max-width: 576px) {
-            .hero-section h1 {
-                font-size: 1.75rem;
-            }
-
-            .hero-section .lead {
-                font-size: 0.9rem;
-            }
+        .hero-section .lead {
+            font-size: 0.9rem;
         }
-    </style>
+
+        .cta-section h2 {
+            font-size: 1.5rem;
+        }
+
+        .auth-forms {
+            padding: 1.5rem;
+        }
+
+        .platform-badges {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    /* Section Spacing */
+    .pt-120 {
+        padding-top: 80px;
+    }
+
+    .pb-90 {
+        padding-bottom: 80px;
+    }
+
+    /* WOW Animations */
+    .wow {
+        visibility: hidden;
+    }
+</style>
 </head>
 
 <body>
     <div id="wrapper">
         <a href="#top" id="back-to-top"></a>
         
-        <!-- Page preloader -->
+        <!-- page preloader begin -->
         <div id="de-loader"></div>
+        <!-- page preloader close -->
 
-        <!-- Header -->
+        <!-- header begin -->
         <header class="transparent header-light header-float">
             <div class="container-float">
                 <div class="row">
@@ -355,20 +628,21 @@
                         <div class="header-inner">
                             <div class="de-flex sm-pt10">
                                 <div class="de-flex-col">
-                                    <!-- Logo -->
+                                    <!-- logo begin -->
                                     <div id="logo">
                                         <a href="/">
-                                            <img class="logo-main" src="/static/images/logo.webp" alt="">
-                                            <img class="logo-scroll" src="/static/images/logo.webp" alt="">
-                                            <img class="logo-mobile" src="/static/images/logo.webp" alt="">
+                                            <img class="logo-main" src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
+                                            <img class="logo-scroll" src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
+                                            <img class="logo-mobile" src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
                                         </a>
                                     </div>
+                                    <!-- logo close -->
                                 </div>
                                 <div class="de-flex-col header-col-mid">
                                     <ul id="mainmenu">
-                                        <li><a class="menu-item" href="/">Home</a></li>
+                                        <li><a class="menu-item active" href="/">Home</a></li>
                                         <li><a class="menu-item" href="/about">About Us</a></li>
-                                        <li><a class="menu-item active" href="/services">Services</a>
+                                        <li><a class="menu-item" href="/services">Services</a>
                                             <ul>
                                                 <li><a class="menu-item" href="/services">All Services</a></li>
                                                 <li><a class="menu-item" href="/service-single">Services Single</a></li>
@@ -378,12 +652,11 @@
                                         <li><a class="menu-item" href="/case-studies">Case Studies</a></li>
                                         <li><a class="menu-item" href="/blog">Blog</a></li>
                                         <li><a class="menu-item" href="/contact">Contact</a></li>
-                                        <li><a class="menu-item" href="/login">Login</a></li>
                                     </ul>
                                 </div>
                                 <div class="de-flex-col">
                                     <div class="menu_side_area">          
-                                        <a class="btn-main fx-slide" href="/login"><span>Login / Register</span></a>
+                                        <a class="btn-main fx-slide" href="/login_page"><span>Login / Register</span></a>
                                         <span id="menu-btn"></span>
                                     </div>
                                 </div>                            
@@ -393,203 +666,171 @@
                 </div>
             </div>
         </header>
+        <!-- header close -->
 
-        <!-- Content -->
+        <!-- content begin -->
         <div class="no-bottom no-top" id="content">
             <div id="top"></div>
 
             <!-- Hero Section -->
-            <section class="relative jarallax overflow-hidden">
-                <img src="/static/images/background/1.webp" class="jarallax-img" alt="">
-                <div class="container relative z-2">
-                    <div class="row g-4 align-items-center relative">
-                        <div class="spacer-single sm-hide"></div>
-                        <div class="col-lg-6">
-                            <h1 class="wow fadeInUp" data-wow-delay=".2s">Amplify Your Brand with Influencer Marketing</h1>
-                            <p class="lead wow fadeInUp" data-wow-delay=".4s">Connect with the right influencers to create authentic campaigns that drive engagement and conversions.</p>
-                            <a class="btn-main mt-2 wow fadeInUp" data-wow-delay=".6s" href="/contact">Get Started</a>
-                        </div>
-                        <div class="col-lg-6">
-                            <img src="/static/images/misc/c1.webp" class="w-100" alt="" data-0="transform: translateY(0px);" data-800="transform: translateY(-500px);">
-                        </div>
-                    </div>
-                    <div class="spacer-single"></div>
-                    <div class="row g-4">
-                        <div class="col-md-4 col-sm-6 mb-sm-30">
-                            <div class="de_count text-center fs-15 wow fadeInRight" data-wow-delay=".0s">
-                                <h3 class="fs-72 fs-xs-60 mb-0">+<span class="timer" data-to="200" data-speed="3000">0</span>%</h3>
-                                <div class="fs-18">Engagement Increase</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 mb-sm-30">
-                            <div class="de_count text-center fs-15 wow fadeInRight" data-wow-delay=".2s">
-                                <h3 class="fs-72 fs-xs-60 mb-0">+<span class="timer" data-to="50" data-speed="3000">0</span>K</h3>
-                                <div class="fs-18">Successful Campaigns</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 mb-sm-30">
-                            <div class="de_count text-center fs-15 wow fadeInRight" data-wow-delay=".4s">
-                                <h3 class="fs-72 fs-xs-60 mb-0">+<span class="timer" data-to="15" data-speed="3000">0</span>M</h3>
-                                <div class="fs-18">Audience Reach</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Marquee Section -->
-            <section class="section-dark p-0" aria-label="section">
-                <div class="bg-color text-light d-flex py-4 lh-1 rot-2 mt-min-50">
-                    <div class="de-marquee-list-1">
-                        <span class="fs-60 mx-3">Influencer Discovery</span>
-                        <span class="fs-60 mx-3 op-3">/</span>
-                        <span class="fs-60 mx-3">Campaign Management</span>
-                        <span class="fs-60 mx-3 op-3">/</span>
-                        <span class="fs-60 mx-3">Analytics & Reporting</span>
-                        <span class="fs-60 mx-3 op-3">/</span>
-                        <span class="fs-60 mx-3">Content Creation</span>
-                        <span class="fs-60 mx-3 op-3">/</span>
-                        <span class="fs-60 mx-3">Brand Collaboration</span>
-                        <span class="fs-60 mx-3 op-3">/</span>
-                    </div>
-                </div>
-                <div class="bg-color-2 text-light d-flex py-4 lh-1 rot-min-1 mt-min-20">
-                    <div class="de-marquee-list-2">
-                        <span class="fs-60 mx-3">Influencer Discovery</span>
-                        <span class="fs-60 mx-3 op-3">/</span>
-                        <span class="fs-60 mx-3">Campaign Management</span>
-                        <span class="fs-60 mx-3 op-3">/</span>
-                        <span class="fs-60 mx-3">Analytics & Reporting</span>
-                        <span class="fs-60 mx-3 op-3">/</span>
-                        <span class="fs-60 mx-3">Content Creation</span>
-                        <span class="fs-60 mx-3 op-3">/</span>
-                        <span class="fs-60 mx-3">Brand Collaboration</span>
-                        <span class="fs-60 mx-3 op-3">/</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Services Section -->
-            <section class="services-section">
+            <section class="hero-section">
                 <div class="container">
-                    <div class="row g-4">
-                        <div class="col-lg-5">
-                            <div class="subtitle wow fadeInUp">Our Services</div>
-                            <h2 class="mb-0 wow fadeInUp">Maximize Your Brand’s Reach</h2>
-                        </div>
-                        <div class="col-lg-4 offset-lg-3">
-                            <div class="spacer-single"></div>
-                            <p class="wow fadeInUp">We leverage the latest influencer marketing strategies to connect brands with the right influencers, ensuring authentic and impactful campaigns.</p>
-                        </div>
-                    </div>
-                    <div class="spacer-single"></div>
-                    <div class="row g-4">
-                        <div class="col-lg-4 wow fadeInRight" data-wow-delay=".2s">
-                            <div class="service-card relative h-100 p-40 rounded-1">
-                                <img src="/static/images/icons/white/search.png" class="w-90px bg-color text-light p-3 rounded-10px fs-56 mb-4" alt="">
-                                <h3>Influencer Discovery</h3>
-                                <p>Find the perfect influencers for your brand using our advanced search tools, targeting audience demographics, niches, and engagement metrics.</p>
-                                <a class="btn-plus" href="/service-single">
-                                    <i class="fa fa-plus"></i>
-                                    <span>Read more</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 wow fadeInRight" data-wow-delay=".4s">
-                            <div class="service-card relative h-100 p-40 rounded-1">
-                                <img src="/static/images/icons/white/network.png" class="w-90px bg-color-2 text-light p-3 rounded-10px fs-56 mb-4" alt="">
-                                <h3>Campaign Management</h3>
-                                <p>Streamline your influencer campaigns with end-to-end management, from planning and content approval to performance tracking.</p>
-                                <a class="btn-plus" href="/service-single">
-                                    <i class="fa fa-plus"></i>
-                                    <span>Read more</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 wow fadeInRight" data-wow-delay=".6s">
-                            <div class="service-card relative h-100 p-40 rounded-1">
-                                <img src="/static/images/icons/white/chart.png" class="w-90px bg-color-3 text-light p-3 rounded-10px fs-56 mb-4" alt="">
-                                <h3>Analytics & Reporting</h3>
-                                <p>Gain insights into campaign performance with detailed analytics, including reach, engagement, and ROI metrics.</p>
-                                <a class="btn-plus" href="/service-single">
-                                    <i class="fa fa-plus"></i>
-                                    <span>Read more</span>
-                                </a>
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <h1 class="wow fadeInUp" data-wow-delay=".2s">Connect. Create. Convert.</h1>
+                            <p class="lead wow fadeInUp" data-wow-delay=".4s">1nFloU is the premier platform connecting brands with influencers to create authentic content that drives real results.</p>
+                            <div class="hero-buttons wow fadeInUp" data-wow-delay=".6s">
+                                <a href="/features" class="btn-main fx-slide me-3"><span>Explore Features</span></a>
+                                <a href="/login_page" class="btn-main btn-dark-trans fx-slide"><span>Get Started</span></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- About Section -->
-            <section class="about-section rounded-1 mx-4">
-                <div class="container relative z-2">
-                    <div class="row g-4 align-items-center">
-                        <div class="col-lg-6">
-                            <div class="subtitle wow fadeInUp">About Us</div>
-                            <h2 class="wow fadeInUp">Elevate Your Brand with Authentic Influencer Partnerships</h2>
-                            <ul class="ul-check">
-                                <li class="wow fadeInUp" data-wow-delay=".2s">Expertise in matching brands with influencers for maximum impact.</li>
-                                <li class="wow fadeInUp" data-wow-delay=".4s">Proven strategies to boost engagement and conversions.</li>
-                                <li class="wow fadeInUp" data-wow-delay=".6s">Access to advanced tools for campaign management and analytics.</li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <img src="/static/images/misc/c5.webp" class="w-100" alt="" data-0="transform: translateY(500px);" data-1500="transform: translateY(0px);">
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Why Choose Us Section -->
-            <section class="why-choose-us-section">
+            <!-- Features Section -->
+            <section id="features" class="pt-120 pb-90">
                 <div class="container">
-                    <div class="row g-4 gx-5">
-                        <div class="col-lg-4">
-                            <div class="subtitle wow fadeInUp mb-3">Why Choose Us</div>
-                            <h2 class="wow fadeInUp">Amplify Your Brand’s Influence</h2>
-                            <div class="relative">
-                                <a href="/contact" class="btn-main fx-slide btn-light-trans"><span>Get Started</span></a>
-                                <img src="/static/images/misc/arrow-black.webp" class="absolute w-50 end-0 top-0 sm-hide anim-left-right" alt="">
+                    <div class="row">
+                        <div class="col-lg-6 mx-auto text-center">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Powerful Features</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Everything you need to run successful influencer marketing campaigns</p>
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-4">
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <h4>Boost Content</h4>
+                                <p>Amplify your reach with our powerful content promotion tools that target the right audience.</p>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <h4 class="mb-4 wow fadeInRight">Why Choose Us</h4>
-                            <ol class="ol-style-1">
-                                <li class="wow fadeInUp" data-wow-delay=".2s">Specialized expertise in influencer marketing strategies.</li>
-                                <li class="wow fadeInUp" data-wow-delay=".4s">Access to a network of vetted influencers across niches.</li>
-                                <li class="wow fadeInUp" data-wow-delay=".6s">Proven track record of successful brand campaigns.</li>
-                            </ol>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-share-alt"></i>
+                                </div>
+                                <h4>Cross-Platform Import</h4>
+                                <p>Seamlessly import and manage content from Facebook, Instagram, TikTok, and more.</p>
+                            </div>
                         </div>
-                        <div class="col-lg-4">
-                            <h4 class="mb-4 wow fadeInRight">Benefits for You</h4>
-                            <ol class="ol-style-1 color-2">
-                                <li class="wow fadeInUp" data-wow-delay=".2s">Increased brand visibility through authentic influencer content.</li>
-                                <li class="wow fadeInUp" data-wow-delay=".4s">Higher engagement and lower bounce rates.</li>
-                                <li class="wow fadeInUp" data-wow-delay=".6s">Enhanced credibility through trusted influencer partnerships.</li>
-                            </ol>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h4>Advanced Analytics</h4>
+                                <p>Track performance with detailed analytics and measure ROI with precision.</p>
+                            </div>
                         </div>
-                        <div class="spacer-half"></div>
-                        <div class="col-lg-12">
-                            <div class="row g-4 gx-lg-5 align-items-center">
-                                <div class="col-md-3 col-6 wow scaleIn" data-wow-delay=".0s">
-                                    <div class="text-center">
-                                        <img src="/static/images/partners/instagram-partner.webp" class="w-50" alt="">
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h4>Influencer Discovery</h4>
+                                <p>Find the perfect creators for your brand with our advanced search and matching algorithm.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-campground"></i>
+                                </div>
+                                <h4>Campaign Management</h4>
+                                <p>Create, manage, and track multiple campaigns from a single dashboard.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".7s">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                </div>
+                                <h4>Payment Processing</h4>
+                                <p>Secure and streamlined payment system for hassle-free transactions with creators.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <center>
+            <!-- Trusted By Section -->
+            <section class="brands-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h3 class="wow fadeInUp" data-wow-delay=".2s">Trusted by Top Brands & Creators</h3>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Join thousands of successful businesses and influencers growing with 1nFloU</p>
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-5 align-items-center">
+                        <div class="col-lg-2 col-md-4 col-6 text-center wow fadeInUp" data-wow-delay=".2s">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Tiktok_logo_text.svg" alt="Brand 1" class="brand-logo">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-6 text-center wow fadeInUp" data-wow-delay=".3s">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/YouTube_2024.svg/1920px-YouTube_2024.svg.png" alt="Brand 2" class="brand-logo">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-6 text-center wow fadeInUp" data-wow-delay=".4s">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/800px-2023_Facebook_icon.svg.png" alt="Brand 3" class="brand-logo">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-6 text-center wow fadeInUp" data-wow-delay=".5s">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Brand 4" class="brand-logo">
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+            </center>
+            <!-- Trending Content Preview -->
+            <section class="trending-posts-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Trending Content</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">See what's performing well on the platform</p>
+                        </div>
+                    </div>
+                    <div class="row g-4 mt-4">
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="post-card">
+                                <img src="{{ url_for('static', filename='images/misc/c1.webp') }}" alt="Post" class="post-image">
+                                <div class="post-content">
+                                    <h5>Summer Collection Launch</h5>
+                                    <p>Check out our new summer line with influencer @fashionjane</p>
+                                    <div class="post-stats">
+                                        <span><i class="fas fa-heart"></i> 245</span>
+                                        <span><i class="fas fa-comment"></i> 42</span>
+                                        <span><i class="fas fa-share"></i> 18</span>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-6 wow scaleIn" data-wow-delay=".2s">
-                                    <div class="text-center">
-                                        <img src="/static/images/partners/tiktok-partner.webp" class="w-50" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                            <div class="post-card">
+                                <img src="{{ url_for('static', filename='images/misc/c5.webp') }}" alt="Post" class="post-image">
+                                <div class="post-content">
+                                    <h5>Tech Review: New Gadgets</h5>
+                                    <p>@techguru breaks down the latest must-have gadgets of 2025</p>
+                                    <div class="post-stats">
+                                        <span><i class="fas fa-heart"></i> 512</span>
+                                        <span><i class="fas fa-comment"></i> 87</span>
+                                        <span><i class="fas fa-share"></i> 34</span>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-6 wow scaleIn" data-wow-delay=".4s">
-                                    <div class="text-center">
-                                        <img src="/static/images/partners/youtube-partner.webp" class="w-50" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-6 wow scaleIn" data-wow-delay=".6s">
-                                    <div class="text-center">
-                                        <img src="/static/images/partners/facebook-partner.webp" class="w-50" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                            <div class="post-card">
+                                <img src="{{ url_for('static', filename='images/misc/c3.webp') }}" alt="Post" class="post-image">
+                                <div class="post-content">
+                                    <h5>Fitness Challenge Week 2</h5>
+                                    <p>Join our 30-day fitness challenge with @fitlife_amy</p>
+                                    <div class="post-stats">
+                                        <span><i class="fas fa-heart"></i> 378</span>
+                                        <span><i class="fas fa-comment"></i> 56</span>
+                                        <span><i class="fas fa-share"></i> 29</span>
                                     </div>
                                 </div>
                             </div>
@@ -598,297 +839,88 @@
                 </div>
             </section>
 
-            <!-- Testimonials Section -->
-            <section class="testimonials-section rounded-1 mx-4">
+            <!-- CTA & Auth Section -->
+            <section id="auth-section" class="cta-section">
                 <div class="container">
-                    <div class="row g-4 align-items-center">
-                        <div class="col-lg-8">
-                            <div class="owl-carousel owl-single-dots">
-                                <div class="ps-lg-5 ps-0">
-                                    <i class="icofont-quote-left id-color-2 fs-40 mb-4 wow fadeInUp"></i>
-                                    <h3 class="fs-28 mb-4 wow fadeInUp">1nFloU transformed our brand’s reach! Their influencer campaigns delivered exceptional engagement and ROI.</h3>
-                                    <span class="wow fadeInUp">Sarah Thompson, Marketing Manager</span>
-                                </div>
-                                <div class="pe-lg-5 pe-0">
-                                    <i class="icofont-quote-left id-color-2 fs-40 mb-4 wow fadeInUp"></i>
-                                    <h3 class="fs-28 mb-4 wow fadeInUp">The analytics provided by 1nFloU gave us clear insights into our campaign success. Highly recommend!</h3>
-                                    <span class="wow fadeInUp">James Lee, Brand Owner</span>
-                                </div>
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Ready to Transform Your Marketing?</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Join thousands of brands and creators already using 1nFloU to drive results</p>
+                            
+                            <div class="user-type-selector wow fadeInUp" data-wow-delay=".6s">
+                                <button class="user-type-btn active" data-type="brand">I'm a Brand</button>
+                                <button class="user-type-btn" data-type="influencer">I'm an Influencer</button>
                             </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="relative text-center">
-                                <div class="d-inline-block text-center m-4 wow fadeInRight" data-wow-delay=".2s">
-                                    <h4 class="fw-bold mb-1 fs-24">Excellent</h4>
-                                    <div class="de-rating-ext fs-18">
-                                        <span class="d-stars">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </span>
-                                        <div class="fs-14 mb-0">Based on <span class="fw-bold">200 reviews</span></div>
-                                        <img src="/static/images/misc/trustpilot-invert.webp" class="w-100px" alt="">
+                            
+                            <!-- Login Form -->
+                            <div class="auth-forms active" id="login-form">
+                                <h4 class="mb-4">Login to Your Account</h4>
+                                <form>
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control" placeholder="Email Address" required>
                                     </div>
-                                </div>
-                                <div class="d-inline-block text-center m-4 wow fadeInRight" data-wow-delay=".4s">
-                                    <h4 class="fw-bold mb-1 fs-24">4.8 out of 5</h4>
-                                    <div class="de-rating-ext fs-18">
-                                        <span class="d-stars">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </span>
-                                        <div class="fs-14 mb-0">Based on <span class="fw-bold">250 reviews</span></div>
-                                        <img src="/static/images/misc/google.webp" class="w-100px" alt="">
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control" placeholder="Password" required>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Pricing Section -->
-            <section class="pricing-section">
-                <div class="container">
-                    <div class="row g-4 mb-2 justify-content-center">
-                        <div class="col-lg-6 text-center">
-                            <div class="subtitle s2 mb-3 wow fadeInUp" data-wow-delay=".0s">Pricing</div>
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Influencer Marketing Plans</h2>
-                            <p class="lead mt-2 wow fadeInUp" data-wow-delay=".3s">Choose a plan tailored to your brand’s influencer marketing goals.</p>
-                        </div>
-                    </div>
-                    <div class="row g-4">
-                        <!-- Starter Plan -->
-                        <div class="col-lg-4 wow fadeInRight" data-wow-delay=".2s">
-                            <div class="pricing-card text-center p-30 rounded-1">
-                                <h3>Starter</h3>
-                                <div class="spacer-single"></div>
-                                <img src="/static/images/icons/search.png" class="w-100px" alt="Starter Plan Icon">
-                                <div class="spacer-single"></div>
-                                <h2 class="mb-2">Free</h2>
-                                <p>Explore our platform with a free trial to kickstart your influencer marketing journey.</p>
-                                <a class="btn-main fx-slide btn-dark-trans w-100 mb-4" href="/login"><span>Start Free</span></a>
-                                <div class="text-start">
-                                    <ul class="ul-check white">
-                                        <li>Basic Influencer Search</li>
-                                        <li>Campaign Planning Tools</li>
-                                        <li>Basic Analytics</li>
-                                        <li>1 Campaign</li>
-                                        <li>Email Support</li>
-                                        <li>Limited Insights</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Pro Plan -->
-                        <div class="col-lg-4 wow fadeInRight" data-wow-delay=".4s">
-                            <div class="pricing-card text-center p-30 rounded-1">
-                                <h3>Pro</h3>
-                                <div class="spacer-single"></div>
-                                <img src="/static/images/icons/chart.png" class="w-100px" alt="Pro Plan Icon">
-                                <div class="spacer-single"></div>
-                                <h2 class="mb-2">$99.99</h2>
-                                <p>Ideal for growing brands seeking impactful influencer partnerships.</p>
-                                <a class="btn-main fx-slide btn-dark-trans w-100 mb-4" href="/login"><span>Get Started</span></a>
-                                <div class="text-start">
-                                    <ul class="ul-check white">
-                                        <li>Advanced Influencer Search</li>
-                                        <li>Campaign Management Suite</li>
-                                        <li>Detailed Analytics</li>
-                                        <li>5 Campaigns</li>
-                                        <li>Priority Support</li>
-                                        <li>Content Review Tools</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Enterprise Plan -->
-                        <div class="col-lg-4 wow fadeInRight" data-wow-delay=".6s">
-                            <div class="pricing-card text-center p-30 rounded-1">
-                                <h3>Enterprise</h3>
-                                <div class="spacer-single"></div>
-                                <img src="/static/images/icons/startup.png" class="w-100px" alt="Enterprise Plan Icon">
-                                <div class="spacer-single"></div>
-                                <h2 class="mb-2">$199.99</h2>
-                                <p>Comprehensive solution for brands aiming for large-scale influencer campaigns.</p>
-                                <a class="btn-main fx-slide btn-dark-trans w-100 mb-4" href="/login"><span>Get Started</span></a>
-                                <div class="text-start">
-                                    <ul class="ul-check white">
-                                        <li>Premium Influencer Search</li>
-                                        <li>Full Campaign Management</li>
-                                        <li>Advanced Analytics & ROI Tracking</li>
-                                        <li>Unlimited Campaigns</li>
-                                        <li>Dedicated Account Manager</li>
-                                        <li>Custom Content Creation</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FAQ Section -->
-            <section class="faq-section rounded-1 mx-4">
-                <div class="container">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-8">
-                            <div class="subtitle wow fadeInUp">Do you have</div>
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Any questions?</h2>
-                        </div>
-                        <div class="col-lg-4 text-lg-end">
-                            <a class="btn-text text-dark wow fadeInLeft" href="/contact">More questions</a>
-                        </div>
-                    </div>
-                    <div class="row g-custom-4">
-                        <div class="col-lg-6 wow fadeInUp">
-                            <div class="accordion secondary">
-                                <div class="accordion-section">
-                                    <div class="accordion-section-title" data-tab="#accordion-1">What is influencer marketing?</div>
-                                    <div class="accordion-section-content" id="accordion-1">
-                                        <p>Influencer marketing involves partnering with individuals who have a significant following on social media to promote your brand, products, or services. It leverages their credibility and audience to drive engagement and conversions.</p>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                                        <a href="#" class="float-end">Forgot password?</a>
                                     </div>
-                                    <div class="accordion-section-title" data-tab="#accordion-2">How do you select the right influencers?</div>
-                                    <div class="accordion-section-content" id="accordion-2">
-                                        <p>We use advanced search tools to analyze influencer demographics, engagement rates, and niche relevance to ensure they align with your brand’s goals and target audience.</p>
-                                    </div>
-                                    <div class="accordion-section-title" data-tab="#accordion-3">What services do you offer?</div>
-                                    <div class="accordion-section-content" id="accordion-3">
-                                        <p>Our services include influencer discovery, campaign management, content creation, analytics and reporting, and payment processing to streamline your influencer marketing efforts.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 wow fadeInUp">
-                            <div class="accordion secondary">
-                                <div class="accordion-section">
-                                    <div class="accordion-section-title" data-tab="#accordion-b-4">Can you guarantee campaign success?</div>
-                                    <div class="accordion-section-content" id="accordion-b-4">
-                                        <p>While we cannot guarantee specific results, we implement data-driven strategies and work with vetted influencers to maximize campaign success and ROI.</p>
-                                    </div>
-                                    <div class="accordion-section-title" data-tab="#accordion-b-5">How do you measure campaign performance?</div>
-                                    <div class="accordion-section-content" id="accordion-b-5">
-                                        <p>We provide detailed analytics on reach, engagement, clicks, and conversions, with customizable reports tailored to your campaign goals.</p>
-                                    </div>
-                                    <div class="accordion-section-title" data-tab="#accordion-b-6">What kind of support do you offer?</div>
-                                    <div class="accordion-section-content" id="accordion-b-6">
-                                        <p>We offer email support for all plans, priority support for Pro plans, and dedicated account managers for Enterprise plans to ensure your campaigns run smoothly.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section class="contact-section">
-                <div class="container">
-                    <div class="row g-4 justify-content-center">
-                        <div class="col-lg-6">
-                            <div class="text-center">
-                                <div class="subtitle wow fadeInUp">Free Consultation</div>
-                                <h2 class="wow fadeInUp" data-wow-delay=".2s">Get In Touch With Us Today</h2>
-                                <p class="lead col-lg-10 offset-lg-1 wow fadeInUp" data-wow-delay=".4s">Have a question or ready to start your influencer campaign? We’re here to help!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-4 gx-5 justify-content-center">
-                        <div class="col-lg-4 wow fadeInLeft" data-wow-delay=".4s">
-                            <div class="contact-info h-100 p-40 rounded-1">
-                                <div class="relative mb-4">
-                                    <i class="abs fs-32 p-3 bg-white rounded-1 icofont-location-pin id-color-2"></i>
-                                    <div class="ms-80px">
-                                        <div class="fw-bold text-white">Office Location</div>
-                                        12 Vermeer, Bellville, Cape Town, South Africa, 7530
-                                    </div>
-                                </div>
-                                <div class="relative mb-4">
-                                    <i class="abs fs-32 p-3 bg-white rounded-1 icofont-envelope id-color-2"></i>
-                                    <div class="ms-80px">
-                                        <div class="fw-bold text-white">Send a Message</div>
-                                        info@detwet.com
-                                    </div>
-                                </div>
-                                <div class="relative mb-4">
-                                    <i class="abs fs-32 p-3 bg-white rounded-1 icofont-phone id-color-2"></i>
-                                    <div class="ms-80px">
-                                        <div class="fw-bold text-white">Make a Phone Call</div>
-                                        +27 84 866 2418
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 wow fadeInRight" data-wow-delay=".4s">
-                            <div class="contact-form p-4 rounded-1">
-                                <form name="contactForm" id="contact_form" method="post" action="/contact">
-                                    {% with messages = get_flashed_messages(with_categories=true) %}
-                                        {% if messages %}
-                                            {% for category, message in messages %}
-                                                <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} wow fadeInUp" data-wow-delay=".2s">
-                                                    {{ message }}
-                                                </div>
-                                            {% endfor %}
-                                        {% endif %}
-                                    {% endwith %}
-                                    <div class="row g-4">
-                                        <div class="col-md-6">
-                                            <input type="text" name="name" id="name" class="form-control" placeholder="Your Name" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="email" name="email" id="email" class="form-control" placeholder="Your Email" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone Number" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="relative">
-                                                <select name="services" id="services" class="form-control">
-                                                    <option value="Influencer Discovery">Influencer Discovery</option>
-                                                    <option value="Campaign Management">Campaign Management</option>
-                                                    <option value="Analytics & Reporting">Analytics & Reporting</option>
-                                                    <option value="Content Creation">Content Creation</option>
-                                                    <option value="Brand Collaboration">Brand Collaboration</option>
-                                                </select>
-                                                <i class="absolute top-0 end-0 id-color pt-3 pe-3 icofont-simple-down"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <textarea name="message" id="message" class="form-control h-100px" placeholder="Message" required></textarea>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="text-center">
-                                                <div id='submit'>
-                                                    <input type='submit' id='send_message' value='Send Message' class="btn-main">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="success_message" class='success' style="display:none;">
-                                        Your message has been sent successfully. Refresh this page if you want to send more messages.
-                                    </div>
-                                    <div id="error_message" class='error' style="display:none;">
-                                        Sorry, there was an error sending your form.
-                                    </div>
+                                    <button type="submit" class="btn-main fx-slide w-100">Login</button>
                                 </form>
+                                <p class="mt-3 text-center">Don't have an account? <a href="#" id="show-register">Register now</a></p>
+                                
+                                <div class="platform-badges">
+                                    <span class="platform-badge"><i class="fab fa-facebook"></i> Facebook</span>
+                                    <span class="platform-badge"><i class="fab fa-instagram"></i> Instagram</span>
+                                    <span class="platform-badge"><i class="fab fa-tiktok"></i> TikTok</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Registration Form -->
+                            <div class="auth-forms" id="register-form">
+                                <h4 class="mb-4">Create Your Account</h4>
+                                <form>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Full Name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control" placeholder="Email Address" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control" placeholder="Password" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control" placeholder="Confirm Password" required>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="termsAgree">
+                                        <label class="form-check-label" for="termsAgree">I agree to the <a href="#">Terms & Conditions</a></label>
+                                    </div>
+                                    <button type="submit" class="btn-main fx-slide w-100">Register</button>
+                                </form>
+                                <p class="mt-3 text-center">Already have an account? <a href="#" id="show-login">Login now</a></p>
+                                
+                                <div class="platform-badges">
+                                    <span class="platform-badge"><i class="fab fa-facebook"></i> Facebook</span>
+                                    <span class="platform-badge"><i class="fab fa-instagram"></i> Instagram</span>
+                                    <span class="platform-badge"><i class="fab fa-tiktok"></i> TikTok</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
+        <!-- content close -->
 
-        <!-- Footer -->
+        <!-- footer begin -->
         <footer class="footer-light">
             <div class="container">
                 <div class="row gx-5">
                     <div class="col-lg-4 col-sm-6">
-                        <img src="/static/images/logo.webp" alt="">
+                        <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="">
                         <div class="spacer-20"></div>
                         <p>1nFloU connects brands with the perfect influencers to create authentic content that drives engagement and conversions.</p>
                         <div class="social-icons mb-sm-30">
@@ -907,11 +939,10 @@
                                     <ul>
                                         <li><a href="/">Home</a></li>
                                         <li><a href="/services">Our Services</a></li>
-                                        <li><a href="/case-studies">Case Studies</a></li>
-                                        <li><a href="/about">About Us</a></li>
-                                        <li><a href="/blog">Blog</a></li>
-                                        <li><a href="/contact">Contact</a></li>
-                                        <li><a href="/login">Login</a></li>
+                                        <li><a href="case-studies.html">Case Studies</a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -919,11 +950,11 @@
                                 <div class="widget">
                                     <h5>Our Services</h5>
                                     <ul>
-                                        <li><a href="/services">Influencer Discovery</a></li>
+                                        <li><a href="/services">Influencer Marketing</a></li>
+                                        <li><a href="/services">Content Import</a></li>
                                         <li><a href="/services">Campaign Management</a></li>
                                         <li><a href="/services">Analytics & Reporting</a></li>
-                                        <li><a href="/services">Content Creation</a></li>
-                                        <li><a href="/services">Brand Collaboration</a></li>
+                                        <li><a href="/services">Influencer Discovery</a></li>
                                         <li><a href="/services">Payment Processing</a></li>
                                     </ul>
                                 </div>
@@ -933,13 +964,13 @@
                     <div class="col-lg-4 col-sm-6 order-lg-2 order-sm-1">
                         <div class="widget">
                             <div class="fw-bold text-dark"><i class="icofont-location-pin me-2 id-color"></i>Office Location</div>
-                            12 Vermeer, Bellville, Cape Town, South Africa, 7530
+                            12 Vermeer , Bellville, Cape Town, South Africa, 7530
                             <div class="spacer-20"></div>
                             <div class="fw-bold text-dark"><i class="icofont-envelope me-2 id-color"></i>Send a Message</div>
                             info@detwet.com
                             <div class="spacer-20"></div>
                             <div class="fw-bold text-dark"><i class="icofont-phone me-2 id-color"></i>Make a Phone Call</div>
-                            +27 84 866 2418
+                            +27 84 866 2418                           
                         </div>
                     </div>
                 </div>
@@ -950,7 +981,7 @@
                         <div class="col-md-12">
                             <div class="de-flex">
                                 <div class="de-flex-col">
-                                    Copyright 2025 - DeWet Technologies.
+                                    Copyright 2025 - DeWet Technologies .
                                 </div>
                                 <ul class="menu-simple">
                                     <li><a href="#">Terms & Conditions</a></li>
@@ -962,75 +993,124 @@
                 </div>
             </div>
         </footer>
+        <!-- footer close -->
     </div>
 
     <!-- Javascript Files -->
-    <script src="/static/js/vendors.js"></script>
-    <script src="/static/js/designesia.js"></script>
-    <script src="/static/js/custom-marquee.js"></script>
+    <script src="{{ url_for('static', filename='js/vendors.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/designesia.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Accordion functionality
-            const accordionTitles = document.querySelectorAll('.accordion-section-title');
-            accordionTitles.forEach(title => {
-                title.addEventListener('click', function() {
-                    const content = document.querySelector(this.getAttribute('data-tab'));
-                    const isOpen = this.classList.contains('active');
-                    accordionTitles.forEach(t => {
-                        t.classList.remove('active');
-                        document.querySelector(t.getAttribute('data-tab')).style.display = 'none';
-                    });
-                    if (!isOpen) {
-                        this.classList.add('active');
-                        content.style.display = 'block';
+            // User type selection
+            const userTypeButtons = document.querySelectorAll('.user-type-btn');
+            userTypeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    userTypeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    // Here you could toggle between brand/influencer specific forms if needed
+                });
+            });
+            
+            // Toggle between login and register forms
+            const showRegisterBtn = document.getElementById('show-register');
+            const showLoginBtn = document.getElementById('show-login');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            
+            if (showRegisterBtn && showLoginBtn) {
+                showRegisterBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    loginForm.classList.remove('active');
+                    registerForm.classList.add('active');
+                });
+                
+                showLoginBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    registerForm.classList.remove('active');
+                    loginForm.classList.add('active');
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
                     }
                 });
             });
 
             // Form validation
-            const contactForm = document.getElementById('contact_form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    const name = document.getElementById('name').value.trim();
-                    const email = document.getElementById('email').value.trim();
-                    const phone = document.getElementById('phone').value.trim();
-                    const message = document.getElementById('message').value.trim();
-                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    
+                    // Basic form validation
+                    const inputs = form.querySelectorAll('input[required]');
                     let isValid = true;
-
-                    if (!name || !email || !phone || !message || !emailPattern.test(email)) {
-                        isValid = false;
-                        document.getElementById('error_message').style.display = 'block';
-                        document.getElementById('success_message').style.display = 'none';
+                    
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            isValid = false;
+                            input.classList.add('is-invalid');
+                        } else {
+                            input.classList.remove('is-invalid');
+                        }
+                    });
+                    
+                    // Email validation
+                    const emailInputs = form.querySelectorAll('input[type="email"]');
+                    emailInputs.forEach(input => {
+                        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailPattern.test(input.value)) {
+                            isValid = false;
+                            input.classList.add('is-invalid');
+                        }
+                    });
+                    
+                    // Password confirmation validation (for register form)
+                    if (form.closest('#register-form')) {
+                        const password = form.querySelector('input[placeholder="Password"]');
+                        const confirmPassword = form.querySelector('input[placeholder="Confirm Password"]');
+                        
+                        if (password && confirmPassword && password.value !== confirmPassword.value) {
+                            isValid = false;
+                            confirmPassword.classList.add('is-invalid');
+                        }
                     }
-
+                    
                     if (isValid) {
-                        // Submit form via AJAX or let Flask handle it
-                        fetch('/contact', {
-                            method: 'POST',
-                            body: new FormData(contactForm),
-                            headers: {
-                                'Accept': 'application/json'
-                            }
-                        })
-                        .then(response => {
-                            if (response.ok) {
-                                document.getElementById('success_message').style.display = 'block';
-                                document.getElementById('error_message').style.display = 'none';
-                                contactForm.reset();
-                            } else {
-                                document.getElementById('error_message').style.display = 'block';
-                                document.getElementById('success_message').style.display = 'none';
-                            }
-                        })
-                        .catch(() => {
-                            document.getElementById('error_message').style.display = 'block';
-                            document.getElementById('success_message').style.display = 'none';
-                        });
+                        // Here you would typically send the form data to your Flask backend
+                        console.log('Form is valid, ready to submit');
+                        alert('Form submitted successfully!');
+                    } else {
+                        console.log('Form validation failed');
                     }
                 });
-            }
+            });
+
+            // Add invalid input styling
+            const style = document.createElement('style');
+            style.textContent = `
+                .form-control.is-invalid {
+                    border-color: #dc3545;
+                    background-color: rgba(220, 53, 69, 0.1);
+                }
+                .form-control.is-invalid:focus {
+                    border-color: #dc3545;
+                    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
 </body>
