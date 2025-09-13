@@ -6,7 +6,7 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="1nFloU Full API Documentation — Comprehensive guide to integrating influencer marketing tools into your applications" name="description">
-    <meta content="influencer marketing API, full API documentation, 1nFloU developer tools" name="keywords">
+    <meta content="influencer marketing API, full API documentation, 1nFloU developer tools, OAuth2, JWT, API keys" name="keywords">
     <meta content="" name="author">
     <!-- CSS Files -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bootstrap">
@@ -90,60 +90,56 @@
         margin-right: auto;
     }
 
-    /* Docs Overview Section */
-    .docs-overview-section {
+    /* Docs Section */
+    .docs-section {
         padding: 80px 0;
         background-color: var(--secondary-color);
     }
 
-    .docs-overview-section .container {
-        max-width: 1200px;
+    .docs-section .container {
+        max-width: 1000px;
     }
 
-    .docs-card {
-        background-color: var(--card-bg);
-        border-radius: var(--border-radius);
-        padding: 2rem;
-        margin-bottom: 1.5rem;
-        box-shadow: var(--shadow-light);
-        transition: all 0.3s ease;
-    }
-
-    .docs-card:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-hover);
-    }
-
-    .docs-card h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--text-dark);
-        margin-bottom: 0.75rem;
-    }
-
-    .docs-card p {
-        font-size: 0.95rem;
-        color: var(--text-light);
-    }
-
-    /* Code Examples Section */
-    .code-examples-section {
-        padding: 80px 0;
-        background-color: var(--card-bg);
-    }
-
-    .code-examples-section .container {
-        max-width: 800px;
-    }
-
-    .code-examples-section h2 {
+    .docs-section h2 {
         font-size: 2.25rem;
         font-weight: 700;
         margin-bottom: 1.5rem;
-        text-align: center;
     }
 
-    .code-example {
+    .docs-section h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .docs-section h4 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .docs-section p, .docs-section li {
+        font-size: 0.95rem;
+        color: var(--text-light);
+        margin-bottom: 0.75rem;
+    }
+
+    .docs-section ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+    }
+
+    .docs-section .endpoint {
+        background-color: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: var(--shadow-light);
+    }
+
+    .docs-section .code-example {
         background-color: var(--code-bg);
         border: 1px solid var(--code-border);
         border-radius: var(--border-radius);
@@ -151,14 +147,7 @@
         margin-bottom: 1.5rem;
     }
 
-    .code-example h4 {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: var(--text-dark);
-        margin-bottom: 1rem;
-    }
-
-    .code-example pre {
+    .docs-section .code-example pre {
         background-color: transparent;
         border: none;
         padding: 0;
@@ -167,7 +156,7 @@
         overflow-x: auto;
     }
 
-    .code-example code {
+    .docs-section .code-example code {
         font-family: 'Courier New', Courier, monospace;
         color: var(--text-dark);
     }
@@ -291,7 +280,7 @@
 
     /* Responsive Design */
     @media (max-width: 992px) {
-        .docs-card {
+        .docs-section .endpoint {
             margin-bottom: 2rem;
         }
     }
@@ -309,19 +298,15 @@
             font-size: 1rem;
         }
 
-        .docs-card h3 {
-            font-size: 1.25rem;
-        }
-
-        .docs-card p {
-            font-size: 0.9rem;
-        }
-
-        .code-examples-section h2 {
+        .docs-section h2 {
             font-size: 1.75rem;
         }
 
-        .code-example pre {
+        .docs-section h3 {
+            font-size: 1.25rem;
+        }
+
+        .docs-section .code-example pre {
             font-size: 0.85rem;
         }
     }
@@ -380,7 +365,7 @@
                                         <li><a class="menu-item" href="/services">Services</a>
                                             <ul>
                                                 <li><a class="menu-item" href="/services">All Services</a></li>
-                                                <li><a class="menu-item" href="/service-single">Services Single</a></li>
+                                                <li><a class="menu-item" href="/api">API Doc</a></li>
                                                 <li><a class="menu-item" href="/pricing">Pricing Plans</a></li>
                                             </ul>
                                         </li>
@@ -412,89 +397,152 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 mx-auto">
-                            <h1 class="wow fadeInUp" data-wow-delay=".2s">1nFloU Full API Documentation</h1>
-                            <p class="lead wow fadeInUp" data-wow-delay=".4s">Explore our comprehensive API documentation to integrate influencer marketing tools into your applications. Visit <a href="https://x.ai/api" target="_blank" style="color: #ffffff; text-decoration: underline;">x.ai/api</a> for complete details.</p>
+                            <h1 class="wow fadeInUp" data-wow-delay=".2s">1nFloU API Documentation</h1>
+                            <p class="lead wow fadeInUp" data-wow-delay=".4s">Integrate influencer marketing tools into your applications with our comprehensive API. For complete details, visit <a href="/api/doc" target="_blank" style="color: #ffffff; text-decoration: underline;">API Full Doc</a>.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Docs Overview Section -->
-            <section class="docs-overview-section">
+            <!-- Docs Section -->
+            <section class="docs-section">
                 <div class="container">
-                    <div class="row text-center">
-                        <div class="col-lg-8 mx-auto">
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Comprehensive API Documentation</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".4s">Our API empowers developers to manage campaigns, discover influencers, and access analytics programmatically. For the full documentation, including detailed endpoint specifications, visit <a href="https://x.ai/api" target="_blank" style="color: var(--primary-color);">x.ai/api</a>.</p>
-                        </div>
-                    </div>
-                    <div class="row g-4 mt-4">
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                            <div class="docs-card">
-                                <h3>Authentication</h3>
-                                <p>Securely authenticate your API requests using OAuth 2.0 or API keys. Learn how to generate tokens and manage access.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                            <div class="docs-card">
-                                <h3>Influencer Endpoints</h3>
-                                <p>Search and filter influencers by category, audience size, and engagement metrics to find the perfect match for your brand.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                            <div class="docs-card">
-                                <h3>Campaign Management</h3>
-                                <p>Create, update, and monitor influencer campaigns programmatically with our robust campaign endpoints.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                            <div class="docs-card">
-                                <h3>Analytics & Reporting</h3>
-                                <p>Access detailed performance metrics, including reach, engagement, and ROI, for your influencer campaigns.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                            <div class="docs-card">
-                                <h3>Rate Limits & Best Practices</h3>
-                                <p>Understand API rate limits and follow best practices to optimize performance and avoid throttling.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                            <div class="docs-card">
-                                <h3>Developer Support</h3>
-                                <p>Get assistance from our dedicated support team for integration issues, feature requests, or troubleshooting.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Code Examples Section -->
-            <section class="code-examples-section">
-                <div class="container">
-                    <div class="row text-center">
-                        <div class="col-lg-12 mx-auto">
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s">API Code Examples</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".4s">Below are sample API requests to get you started. For complete endpoint details, visit <a href="https://x.ai/api" target="_blank" style="color: var(--primary-color);">x.ai/api</a>.</p>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
+                    <div class="row">
                         <div class="col-lg-12">
-                            <div class="code-example wow fadeInUp" data-wow-delay=".2s">
-                                <h4>Fetch Influencer Data</h4>
-                                <pre><code>
-# Example: Retrieve influencers by category
-curl -X GET "https://api.1nflou.com/v1/influencers" \
+                            <!-- 1. Introduction -->
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">1. Introduction</h2>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".3s">
+                                <h3>Overview</h3>
+                                <p>The 1nFloU API enables developers to integrate influencer marketing capabilities, including user management, influencer discovery, campaign creation, content collaboration, analytics, and payment processing. It is designed for scalability, security, and ease of use.</p>
+                                <ul>
+                                    <li><strong>Purpose</strong>: Facilitate programmatic management of influencer marketing campaigns.</li>
+                                    <li><strong>Features</strong>: User authentication, influencer search, campaign management, analytics, content collaboration, and secure payments.</li>
+                                </ul>
+                            </div>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".4s">
+                                <h3>Base URL</h3>
+                                <p><code>https://api.1nflou.com/v1/</code></p>
+                            </div>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".5s">
+                                <h3>Authentication Methods</h3>
+                                <p>The API supports multiple authentication methods to secure requests:</p>
+                                <ul>
+                                    <li><strong>API Keys</strong>: Simple keys for basic access.</li>
+                                    <li><strong>OAuth 2.0</strong>: Token-based authorization for third-party access.</li>
+                                    <li><strong>JWT</strong>: Stateless tokens for microservices and user authentication.</li>
+                                </ul>
+                            </div>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".6s">
+                                <h3>Supported Formats</h3>
+                                <p>The API primarily uses JSON for request and response payloads. XML is supported for specific endpoints (specify <code>Accept: application/xml</code> in headers).</p>
+                            </div>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".7s">
+                                <h3>Rate Limits</h3>
+                                <p>100 requests per minute per user. See Section 5 for details on rate limit headers.</p>
+                            </div>
+
+                            <!-- 2. Authentication -->
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">2. Authentication</h2>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".3s">
+                                <h3>Generate an API Key</h3>
+                                <p>API keys can be generated via the developer dashboard at <a href="/api/doc" target="_blank">API Full Doc</a>. Log in, navigate to "API Keys," and click "Generate Key."</p>
+                            </div>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".4s">
+                                <h3>Example Request</h3>
+                                <div class="code-example">
+                                    <pre><code>curl -X GET "https://api.1nflou.com/v1/influencers" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json"</code></pre>
+                                </div>
+                            </div>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".5s">
+                                <h3>Token Expiration and Refresh (OAuth 2.0)</h3>
+                                <p>Access tokens expire after 1 hour. Use refresh tokens to obtain new access tokens:</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X POST "https://api.1nflou.com/v1/oauth/token" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=refresh_token" \
+  -d "refresh_token=YOUR_REFRESH_TOKEN" \
+  -d "client_id=YOUR_CLIENT_ID" \
+  -d "client_secret=YOUR_CLIENT_SECRET"</code></pre>
+                                </div>
+                            </div>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".6s">
+                                <h3>Example Error Response (Unauthorized)</h3>
+                                <div class="code-example">
+                                    <pre><code>{
+  "error": true,
+  "code": 401,
+  "message": "Invalid API key"
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- 3. Endpoints -->
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">3. Endpoints</h2>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".3s">
+                                <h3>Users</h3>
+                                <h4>POST /users/register</h4>
+                                <p>Register a new brand or influencer.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X POST "https://api.1nflou.com/v1/users/register" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "user@example.com",
+    "password": "securepassword",
+    "role": "brand"
+  }'</code></pre>
+                                </div>
+                                <h4>POST /users/login</h4>
+                                <p>Authenticate and obtain a token.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X POST "https://api.1nflou.com/v1/users/login" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "user@example.com",
+    "password": "securepassword"
+  }'</code></pre>
+                                </div>
+                                <h4>GET /users/me</h4>
+                                <p>Fetch current user profile.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X GET "https://api.1nflou.com/v1/users/me" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                                </div>
+                            </div>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".4s">
+                                <h3>Influencers</h3>
+                                <h4>GET /influencers</h4>
+                                <p>List or search influencers by filters (category, followers, engagement, location).</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X GET "https://api.1nflou.com/v1/influencers?category=fashion&followers_min=10000" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                                </div>
+                                <h4>GET /influencers/{id}</h4>
+                                <p>Get detailed influencer profile and stats.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X GET "https://api.1nflou.com/v1/influencers/123" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                                </div>
+                                <h4>POST /influencers</h4>
+                                <p>Add a new influencer (admin-only).</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X POST "https://api.1nflou.com/v1/influencers" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"category": "fashion", "followers_min": 10000, "limit": 10}'
-                                </code></pre>
+  -d '{
+    "name": "John Doe",
+    "category": "fitness",
+    "followers": 50000
+  }'</code></pre>
+                                </div>
                             </div>
-                            <div class="code-example wow fadeInUp" data-wow-delay=".3s">
-                                <h4>Create a Campaign</h4>
-                                <pre><code>
-# Example: Create a new influencer campaign
-curl -X POST "https://api.1nflou.com/v1/campaigns" \
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".5s">
+                                <h3>Campaigns</h3>
+                                <h4>POST /campaigns</h4>
+                                <p>Create a new campaign.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X POST "https://api.1nflou.com/v1/campaigns" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -502,17 +550,258 @@ curl -X POST "https://api.1nflou.com/v1/campaigns" \
     "start_date": "2025-10-01",
     "budget": 5000,
     "influencer_ids": ["123", "456"]
-  }'
-                                </code></pre>
-                            </div>
-                            <div class="code-example wow fadeInUp" data-wow-delay=".4s">
-                                <h4>Retrieve Campaign Analytics</h4>
-                                <pre><code>
-# Example: Get analytics for a campaign
-curl -X GET "https://api.1nflou.com/v1/campaigns/789/analytics" \
+  }'</code></pre>
+                                </div>
+                                <h4>GET /campaigns</h4>
+                                <p>List all campaigns.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X GET "https://api.1nflou.com/v1/campaigns" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                                </div>
+                                <h4>GET /campaigns/{id}</h4>
+                                <p>Get campaign details.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X GET "https://api.1nflou.com/v1/campaigns/789" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                                </div>
+                                <h4>PUT /campaigns/{id}</h4>
+                                <p>Update a campaign.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X PUT "https://api.1nflou.com/v1/campaigns/789" \
   -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json"
-                                </code></pre>
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Updated Summer Campaign",
+    "budget": 6000
+  }'</code></pre>
+                                </div>
+                                <h4>DELETE /campaigns/{id}</h4>
+                                <p>Delete a campaign.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X DELETE "https://api.1nflou.com/v1/campaigns/789" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                                </div>
+                            </div>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".6s">
+                                <h3>Content & Collaboration</h3>
+                                <h4>POST /campaigns/{id}/content</h4>
+                                <p>Upload influencer content for approval.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X POST "https://api.1nflou.com/v1/campaigns/789/content" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content_url": "https://example.com/post.jpg",
+    "caption": "Summer vibes!"
+  }'</code></pre>
+                                </div>
+                                <h4>GET /campaigns/{id}/content</h4>
+                                <p>List campaign posts.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X GET "https://api.1nflou.com/v1/campaigns/789/content" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                                </div>
+                                <h4>POST /messages</h4>
+                                <p>Send messages between brand and influencer.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X POST "https://api.1nflou.com/v1/messages" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "recipient_id": "123",
+    "message": "Looking forward to the campaign!"
+  }'</code></pre>
+                                </div>
+                            </div>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".7s">
+                                <h3>Analytics</h3>
+                                <h4>GET /analytics/campaign/{id}</h4>
+                                <p>Retrieve campaign performance metrics (impressions, engagement, conversions).</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X GET "https://api.1nflou.com/v1/analytics/campaign/789" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                                </div>
+                                <h4>GET /analytics/influencer/{id}</h4>
+                                <p>Retrieve influencer performance stats.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X GET "https://api.1nflou.com/v1/analytics/influencer/123" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                                </div>
+                            </div>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".8s">
+                                <h3>Payments</h3>
+                                <h4>POST /payments</h4>
+                                <p>Create a payment for an influencer.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X POST "https://api.1nflou.com/v1/payments" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "influencer_id": "123",
+    "amount": 1000,
+    "currency": "USD"
+  }'</code></pre>
+                                </div>
+                                <h4>GET /payments/{id}</h4>
+                                <p>View payment status.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X GET "https://api.1nflou.com/v1/payments/456" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                                </div>
+                                <h4>GET /payments</h4>
+                                <p>List payment history.</p>
+                                <div class="code-example">
+                                    <pre><code>curl -X GET "https://api.1nflou.com/v1/payments" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- 4. Error Handling -->
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">4. Error Handling</h2>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".3s">
+                                <h3>Standardized Error Response Format</h3>
+                                <div class="code-example">
+                                    <pre><code>{
+  "error": true,
+  "code": 401,
+  "message": "Invalid API key"
+}</code></pre>
+                                </div>
+                                <h4>Common Error Codes</h4>
+                                <ul>
+                                    <li><strong>400 Bad Request</strong>: Invalid request parameters or payload.</li>
+                                    <li><strong>401 Unauthorized</strong>: Invalid or missing authentication credentials.</li>
+                                    <li><strong>404 Not Found</strong>: Resource not found.</li>
+                                    <li><strong>429 Too Many Requests</strong>: Rate limit exceeded.</li>
+                                    <li><strong>500 Internal Server Error</strong>: Server-side issue.</li>
+                                </ul>
+                            </div>
+
+                            <!-- 5. Rate Limits -->
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">5. Rate Limits</h2>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".3s">
+                                <p>The API enforces a rate limit of 100 requests per minute per user. Responses include the following headers:</p>
+                                <ul>
+                                    <li><code>X-RateLimit-Limit</code>: Maximum requests allowed (100).</li>
+                                    <li><code>X-RateLimit-Remaining</code>: Remaining requests in the current window.</li>
+                                    <li><code>X-RateLimit-Reset</code>: Unix timestamp when the limit resets.</li>
+                                </ul>
+                                <h4>Example Rate Limit Exceeded Response</h4>
+                                <div class="code-example">
+                                    <pre><code>{
+  "error": true,
+  "code": 429,
+  "message": "Rate limit exceeded. Try again later."
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- 6. Webhooks -->
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">6. Webhooks</h2>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".3s">
+                                <h3>POST /webhooks/events</h3>
+                                <p>Receive real-time updates for campaign updates, influencer approvals, or payment completions.</p>
+                                <h4>Example Payload (Campaign Update)</h4>
+                                <div class="code-example">
+                                    <pre><code>{
+  "event": "campaign.updated",
+  "data": {
+    "campaign_id": "789",
+    "name": "Summer Fashion Campaign",
+    "status": "active"
+  },
+  "timestamp": "2025-09-13T20:27:00Z"
+}</code></pre>
+                                </div>
+                                <h4>Example Payload (Payment Completed)</h4>
+                                <div class="code-example">
+                                    <pre><code>{
+  "event": "payment.completed",
+  "data": {
+    "payment_id": "456",
+    "influencer_id": "123",
+    "amount": 1000,
+    "currency": "USD"
+  },
+  "timestamp": "2025-09-13T20:27:00Z"
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- 7. SDKs / Examples -->
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">7. SDKs / Examples</h2>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".3s">
+                                <h3>Curl</h3>
+                                <div class="code-example">
+                                    <pre><code>curl -X GET "https://api.1nflou.com/v1/influencers?category=fashion" \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+                                </div>
+                                <h3>JavaScript (Axios)</h3>
+                                <div class="code-example">
+                                    <pre><code>const axios = require('axios');
+
+async function getInfluencers() {
+  try {
+    const response = await axios.get('https://api.1nflou.com/v1/influencers?category=fashion', {
+      headers: {
+        'Authorization': 'Bearer YOUR_API_KEY'
+      }
+    });
+    console.log(response.data);
+  } catch (error) {
+    console.error('Error:', error.response.data);
+  }
+}</code></pre>
+                                </div>
+                                <h3>Python (Requests)</h3>
+                                <div class="code-example">
+                                    <pre><code>import requests
+
+url = "https://api.1nflou.com/v1/influencers?category=fashion"
+headers = {"Authorization": "Bearer YOUR_API_KEY"}
+
+response = requests.get(url, headers=headers)
+if response.status_code == 200:
+    print(response.json())
+else:
+    print(f"Error: {response.json()}")</code></pre>
+                                </div>
+                                <h3>PHP (Guzzle)</h3>
+                                <div class="code-example">
+                                    <pre><code>use GuzzleHttp\Client;
+
+$client = new Client();
+$response = $client->request('GET', 'https://api.1nflou.com/v1/influencers?category=fashion', [
+    'headers' => [
+        'Authorization' => 'Bearer YOUR_API_KEY',
+    ]
+]);
+
+if ($response->getStatusCode() == 200) {
+    echo $response->getBody();
+} else {
+    echo 'Error: ' . $response->getBody();
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- 8. Changelog -->
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">8. Changelog</h2>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".3s">
+                                <h3>Versioning</h3>
+                                <p>The API is versioned (e.g., <code>/v1/</code>, <code>/v2/</code>) to ensure backward compatibility. Always specify the version in the base URL.</p>
+                                <h3>Recent Updates</h3>
+                                <ul>
+                                    <li><strong>v1.1 (2025-08-01)</strong>: Added support for XML responses.</li>
+                                    <li><strong>v1.0 (2025-06-15)</strong>: Initial API release with user, influencer, campaign, and analytics endpoints.</li>
+                                </ul>
+                            </div>
+
+                            <!-- 9. Support -->
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">9. Support</h2>
+                            <div class="endpoint wow fadeInUp" data-wow-delay=".3s">
+                                <p>For developer assistance, contact our support team via <a href="/contact">Contact Us</a> or email <a href="mailto:support@1nflou.com">support@1nflou.com</a>.</p>
+                                <p>Explore our GitHub repository and Postman collection at <a href="/api/doc" target="_blank">API Full Doc</a> for additional resources.</p>
                             </div>
                         </div>
                     </div>
@@ -525,9 +814,9 @@ curl -X GET "https://api.1nflou.com/v1/campaigns/789/analytics" \
                     <div class="row">
                         <div class="col-lg-12 mx-auto text-center">
                             <h2 class="wow fadeInUp" data-wow-delay=".2s">Explore the Full API Documentation</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".4s">Dive into our complete API documentation for detailed endpoint specifications, tutorials, and more. Visit <a href="https://x.ai/api" target="_blank" style="color: #ffffff; text-decoration: underline;">x.ai/api</a> to get started.</p>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Dive into our complete API documentation for detailed endpoint specifications, tutorials, and more. Visit <a href="/api/doc" target="_blank" style="color: #ffffff; text-decoration: underline;">API Full Doc</a> to get started.</p>
                             <div class="hero-buttons wow fadeInUp" data-wow-delay=".6s">
-                                <a href="https://x.ai/api" target="_blank" class="btn-main fx-slide me-3"><span>View Full Documentation</span></a>
+                                <a href="/api/doc" target="_blank" class="btn-main fx-slide me-3"><span>View Full Documentation</span></a>
                                 <a href="/contact" class="btn-main btn-dark-trans fx-slide"><span>Contact Support</span></a>
                             </div>
                         </div>
