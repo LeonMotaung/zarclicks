@@ -67,6 +67,14 @@ def dashboard():
 def services():
     return render_template('services.html')
 
+@main_bp.route('/api')
+def api():
+    return render_template('api.html')
+
+@main_bp.route('/api/doc')
+def api_doc():
+    return render_template('doc.html')
+
 # Normal route for manual navigation
 @main_bp.route("/404")
 def not_found_page():

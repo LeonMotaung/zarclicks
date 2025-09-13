@@ -1,12 +1,12 @@
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>1nFloU — Contact Us</title>
+    <title>API - 1nFloU Influencer Marketing Platform</title>
     <link rel="icon" href="{{ url_for('static', filename='images/icon.webp') }}" type="image/gif" sizes="16x16">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Contact 1nFloU — Get in touch with our team for support or inquiries about influencer marketing" name="description">
-    <meta content="contact us, influencer marketing, brand collaboration, support" name="keywords">
+    <meta content="1nFloU API — Integrate influencer marketing tools into your applications" name="description">
+    <meta content="influencer marketing API, 1nFloU API, marketing integration" name="keywords">
     <meta content="" name="author">
     <!-- CSS Files -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bootstrap">
@@ -68,10 +68,11 @@
     .hero-section .container {
         position: relative;
         z-index: 2;
+        max-width: 800px;
     }
 
     .hero-section h1 {
-        font-size: 3.5rem;
+        font-size: 3rem;
         font-weight: 800;
         margin-bottom: 1.5rem;
         line-height: 1.2;
@@ -79,7 +80,7 @@
     }
 
     .hero-section .lead {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
         margin-bottom: 2rem;
         opacity: 0.9;
         max-width: 600px;
@@ -87,158 +88,51 @@
         margin-right: auto;
     }
 
-    /* Contact Section */
-    .contact-section {
+    /* API Features Section */
+    .api-section {
         padding: 80px 0;
         background-color: var(--secondary-color);
     }
 
-    .contact-section h2 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        letter-spacing: -0.025em;
+    .api-section .container {
+        max-width: 1200px;
     }
 
-    .contact-section p {
-        font-size: 1.1rem;
-        color: var(--text-light);
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        text-align: center;
-    }
-
-    .contact-form {
-        max-width: 600px;
-        margin: 0 auto;
-        background: var(--card-bg);
-        padding: 2rem;
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow-light);
-    }
-
-    .contact-form .form-control {
-        background: #f8fafc;
-        border: 1px solid #e5e7eb;
-        color: var(--text-dark);
-        border-radius: 8px;
-        padding: 12px 15px;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
-    }
-
-    .contact-form .form-control::placeholder {
-        color: var(--text-light);
-    }
-
-    .contact-form .form-control:focus {
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.1);
-        background: #ffffff;
-    }
-
-    .contact-form textarea {
-        resize: vertical;
-        min-height: 150px;
-    }
-
-    .contact-form .btn-main {
-        width: 100%;
-        padding: 12px;
-        font-size: 1rem;
-        font-weight: 600;
-        border-radius: var(--border-radius);
-        transition: all 0.3s ease;
-    }
-
-    .contact-form .btn-main:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-hover);
-    }
-
-    .alert {
-        padding: 10px;
-        margin-bottom: 1rem;
-        border-radius: var(--border-radius);
-        font-size: 0.9rem;
-        text-align: center;
-    }
-
-    .alert-success {
-        background-color: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
-    }
-
-    .alert-danger {
-        background-color: #f8d7da;
-        color: #721c24;
-        border: 1px solid #f5c6cb;
-    }
-
-    /* Contact Details Section */
-    .contact-details-section {
-        padding: 80px 0;
-    }
-
-    .contact-details-section h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-
-    .contact-details-section p {
-        color: var(--text-light);
-        font-size: 1rem;
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        text-align: center;
-    }
-
-    .contact-detail {
+    .api-card {
         background-color: var(--card-bg);
         border-radius: var(--border-radius);
         padding: 2rem;
-        height: 100%;
-        transition: all 0.3s ease;
+        margin-bottom: 1.5rem;
         box-shadow: var(--shadow-light);
-        border: 1px solid #e5e7eb;
+        transition: all 0.3s ease;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .contact-detail:hover {
-        transform: translateY(-8px);
+    .api-card:hover {
+        transform: translateY(-5px);
         box-shadow: var(--shadow-hover);
     }
 
-    .contact-detail i {
+    .api-card i {
         font-size: 2.5rem;
         color: var(--primary-color);
-        margin-bottom: 1.5rem;
-    }
-
-    .contact-detail h4 {
-        color: var(--text-dark);
-        font-size: 1.25rem;
-        font-weight: 600;
         margin-bottom: 1rem;
     }
 
-    .contact-detail p {
-        color: var(--text-light);
+    .api-card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 0.75rem;
+    }
+
+    .api-card p {
         font-size: 0.95rem;
-    }
-
-    .contact-detail a {
-        color: var(--primary-color);
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    .contact-detail a:hover {
-        color: #4b50e6;
+        color: var(--text-light);
+        max-width: 300px;
     }
 
     /* CTA Section */
@@ -264,10 +158,11 @@
     .cta-section .container {
         position: relative;
         z-index: 2;
+        max-width: 800px;
     }
 
     .cta-section h2 {
-        font-size: 2.5rem;
+        font-size: 2.25rem;
         font-weight: 700;
         margin-bottom: 1.5rem;
         letter-spacing: -0.025em;
@@ -280,27 +175,19 @@
         opacity: 0.9;
     }
 
-    .cta-section .btn-main {
-        padding: 14px 32px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        border-radius: var(--border-radius);
-        transition: all 0.3s ease;
-    }
-
-    .cta-section .btn-main:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-hover);
-    }
-
     /* Footer */
     .footer-light {
         padding: 60px 0 20px;
         background-color: var(--secondary-color);
     }
 
+    .footer-light .container {
+        max-width: 1200px;
+    }
+
     .footer-light .social-icons {
         display: flex;
+        justify-content: flex-start;
         gap: 1rem;
         margin-top: 1.5rem;
     }
@@ -366,48 +253,31 @@
     }
 
     /* Responsive Design */
+    @media (max-width: 992px) {
+        .api-card {
+            margin-bottom: 2rem;
+        }
+    }
+
     @media (max-width: 768px) {
         .hero-section {
             padding: 80px 0 60px;
         }
 
         .hero-section h1 {
-            font-size: 2.25rem;
+            font-size: 2rem;
         }
 
         .hero-section .lead {
             font-size: 1rem;
         }
 
-        .contact-section,
-        .contact-details-section {
-            padding: 60px 0;
+        .api-card h3 {
+            font-size: 1.25rem;
         }
 
-        .contact-section h2,
-        .contact-details-section h2 {
-            font-size: 1.75rem;
-        }
-
-        .contact-form,
-        .contact-detail {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-section {
-            padding: 60px 0;
-        }
-
-        .cta-section h2 {
-            font-size: 1.75rem;
-        }
-
-        .footer-light .row {
-            text-align: center;
-        }
-
-        .footer-light .social-icons {
-            justify-content: center;
+        .api-card p {
+            font-size: 0.9rem;
         }
     }
 
@@ -420,30 +290,16 @@
             font-size: 0.9rem;
         }
 
-        .contact-section h2,
-        .contact-details-section h2 {
+        .cta-section h2 {
             font-size: 1.5rem;
         }
-
-        .contact-form {
-            padding: 1.5rem;
-        }
-    }
-
-    /* Section Spacing */
-    .pt-120 {
-        padding-top: 80px;
-    }
-
-    .pb-90 {
-        padding-bottom: 80px;
     }
 
     /* WOW Animations */
     .wow {
         visibility: hidden;
     }
-</style>
+    </style>
 </head>
 
 <body>
@@ -479,13 +335,13 @@
                                         <li><a class="menu-item" href="/services">Services</a>
                                             <ul>
                                                 <li><a class="menu-item" href="/services">All Services</a></li>
-                                                <li><a class="menu-item" href="/services">Services Single</a></li>
+                                                <li><a class="menu-item" href="/service-single">Services Single</a></li>
                                                 <li><a class="menu-item" href="/pricing">Pricing Plans</a></li>
                                             </ul>
                                         </li>
-                                        <li><a class="menu-item" href="/api">Case Studies</a></li>
+                                        <li><a class="menu-item" href="/case-studies">Case Studies</a></li>
                                         <li><a class="menu-item" href="/blog">Blog</a></li>
-                                        <li><a class="menu-item active" href="/contact">Contact</a></li>
+                                        <li><a class="menu-item" href="/contact">Contact</a></li>
                                     </ul>
                                 </div>
                                 <div class="de-flex-col">
@@ -510,78 +366,64 @@
             <section class="hero-section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8 mx-auto">
-                            <h1 class="wow fadeInUp" data-wow-delay=".2s">Contact Us</h1>
-                            <p class="lead wow fadeInUp" data-wow-delay=".4s">Have questions or need support? Our team is here to help you succeed with your influencer marketing goals.</p>
+                        <div class="col-lg-12 mx-auto">
+                            <h1 class="wow fadeInUp" data-wow-delay=".2s">1nFloU API</h1>
+                            <p class="lead wow fadeInUp" data-wow-delay=".4s">Integrate our powerful influencer marketing tools into your applications with the 1nFloU API.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Contact Form Section -->
-            <section class="contact-section pt-120 pb-90">
+            <!-- API Features Section -->
+            <section class="api-section">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto text-center">
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Get in Touch</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".4s">Fill out the form below, and we’ll respond within 24 hours.</p>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
+                    <div class="row text-center">
                         <div class="col-lg-8 mx-auto">
-                            <form class="contact-form wow fadeInUp" data-wow-delay=".6s" action="/contact" method="POST">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" name="name" placeholder="Full Name" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="email" class="form-control" name="email" placeholder="Email Address" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" name="subject" placeholder="Subject" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <textarea class="form-control" name="message" placeholder="Your Message" required></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="btn-main fx-slide">Send Message</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact Details Section -->
-            <section class="contact-details-section pt-120 pb-90">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto text-center">
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Our Contact Details</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".4s">Reach out to us directly through any of the following methods.</p>
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Powerful API Features</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Our API allows developers to seamlessly integrate influencer marketing capabilities into their platforms. Learn more at <a href="/api/doc" target="_blank" style="color: var(--primary-color);">API Doc</a>.</p>
                         </div>
                     </div>
                     <div class="row g-4 mt-4">
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                            <div class="contact-detail">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <h4>Office Location</h4>
-                                <p>12 Vermeer, Bellville, Cape Town, South Africa, 7530</p>
+                            <div class="api-card">
+                                <i class="fas fa-search"></i>
+                                <h3>Influencer Discovery</h3>
+                                <p>Access our extensive database to find influencers that match your brand's audience and goals.</p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                            <div class="contact-detail">
-                                <i class="fas fa-envelope"></i>
-                                <h4>Email Us</h4>
-                                <p><a href="mailto:info@detwet.com">info@detwet.com</a></p>
+                            <div class="api-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Campaign Analytics</h3>
+                                <p>Retrieve detailed analytics and performance metrics for your influencer campaigns.</p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                            <div class="contact-detail">
-                                <i class="fas fa-phone"></i>
-                                <h4>Call Us</h4>
-                                <p><a href="tel:+27848662418">+27 84 866 2418</a></p>
+                            <div class="api-card">
+                                <i class="fas fa-cogs"></i>
+                                <h3>Campaign Management</h3>
+                                <p>Automate campaign creation, management, and tracking directly through the API.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                            <div class="api-card">
+                                <i class="fas fa-user-check"></i>
+                                <h3>Authentication</h3>
+                                <p>Securely authenticate users and manage access to your integrated applications.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                            <div class="api-card">
+                                <i class="fas fa-file-export"></i>
+                                <h3>Content Export</h3>
+                                <p>Export influencer-generated content for use in your marketing channels.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".7s">
+                            <div class="api-card">
+                                <i class="fas fa-lock"></i>
+                                <h3>Secure Integration</h3>
+                                <p>Built with industry-standard security protocols to ensure safe and reliable integrations.</p>
                             </div>
                         </div>
                     </div>
@@ -592,10 +434,13 @@
             <section class="cta-section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8 mx-auto">
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Ready to Start Your Campaign?</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".4s">Join 1nFloU today and connect with influencers to amplify your brand.</p>
-                            <a href="/" class="btn-main fx-slide wow fadeInUp" data-wow-delay=".6s"><span>Get Started</span></a>
+                        <div class="col-lg-12 mx-auto text-center">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Get Started with the 1nFloU API</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Explore our API Documentation and start building powerful integrations today. Visit <a href="/api/doc" target="_blank" style="color: #ffffff; text-decoration: underline;">API Doc</a> for more details.</p>
+                            <div class="hero-buttons wow fadeInUp" data-wow-delay=".6s">
+                                <a href="/api/doc" target="_blank" class="btn-main fx-slide me-3"><span>View API Docs</span></a>
+                                <a href="/contact" class="btn-main btn-dark-trans fx-slide"><span>Contact Sales</span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -626,7 +471,7 @@
                                     <h5>Company</h5>
                                     <ul>
                                         <li><a href="/">Home</a></li>
-                                        <li><a href="/services">API</a></li>
+                                        <li><a href="/api">API</a></li>
                                         
                                         <li><a href="/about">About Us</a></li>
                                         <li><a href="/blog">Blog</a></li>
@@ -636,7 +481,7 @@
                             </div>
                             <div class="col-lg-6 col-sm-6">
                                 <div class="widget">
-                                    <h5>API</h5>
+                                    <h5>Our Services</h5>
                                     <ul>
                                         <li><a href="/services">Influencer Marketing</a></li>
                                         <li><a href="/services">Content Import</a></li>
@@ -705,94 +550,6 @@
                     }
                 });
             });
-
-            // Form validation and submission
-            const contactForm = document.querySelector('.contact-form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    
-                    // Clear previous error messages
-                    const existingError = contactForm.querySelector('.alert');
-                    if (existingError) existingError.remove();
-
-                    // Client-side validation
-                    const inputs = contactForm.querySelectorAll('input[required], textarea[required]');
-                    let isValid = true;
-                    
-                    inputs.forEach(input => {
-                        if (!input.value.trim()) {
-                            isValid = false;
-                            input.classList.add('is-invalid');
-                        } else {
-                            input.classList.remove('is-invalid');
-                        }
-                    });
-                    
-                    // Email validation
-                    const emailInput = contactForm.querySelector('input[type="email"]');
-                    if (emailInput) {
-                        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                        if (!emailPattern.test(emailInput.value)) {
-                            isValid = false;
-                            emailInput.classList.add('is-invalid');
-                            showError('Please enter a valid email address.');
-                        }
-                    }
-                    
-                    if (isValid) {
-                        const formData = new FormData(contactForm);
-                        try {
-                            const response = await fetch('/contact', {
-                                method: 'POST',
-                                body: formData
-                            });
-                            const result = await response.json();
-                            if (result.success) {
-                                showSuccess(result.message || 'Message sent successfully!');
-                                contactForm.reset();
-                            } else {
-                                showError(result.message || 'An error occurred while sending your message.');
-                            }
-                        } catch (error) {
-                            showError('Failed to connect to the server. Please try again later.');
-                        }
-                    }
-                });
-            }
-
-            // Helper functions for success/error messages
-            function showSuccess(message) {
-                const successDiv = document.createElement('div');
-                successDiv.className = 'alert alert-success';
-                successDiv.textContent = message;
-                contactForm.insertBefore(successDiv, contactForm.firstChild);
-                setTimeout(() => successDiv.remove(), 5000);
-            }
-
-            function showError(message) {
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'alert alert-danger';
-                errorDiv.textContent = message;
-                contactForm.insertBefore(errorDiv, contactForm.firstChild);
-                setTimeout(() => errorDiv.remove(), 5000);
-            }
-
-            // Add invalid input styling
-            const style = document.createElement('style');
-            style.textContent = `
-                .form-control.is-invalid,
-                textarea.is-invalid {
-                    border-color: #dc3545;
-                    background-color: rgba(220, 53, 69, 0.1);
-                }
-                .form-control.is-invalid:focus,
-                textarea.is-invalid:focus {
-                    border-color: #dc3545;
-                    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-                }
-            `;
-            document.head.appendChild(style);
         });
     </script>
 </body>
