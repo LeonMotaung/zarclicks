@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>4K Portrait Recorder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    video {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>4K Portrait Recorder</h1>
+  <video id="preview" autoplay playsinline muted></video>
+  <br>
+  <button id="startBtn">Start Recording</button>
+  <button id="stopBtn" disabled>Stop Recording</button>
+
+  <script>
+    const video = document.getElementById('preview');
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    let mediaRecorder, recordedChunks = [];
+
+    async function initCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: "user", // or "environment"
+            width: { ideal: 2160 },  // Portrait 4K
+            height: { ideal: 3840 }
+          },
+          audio: true
+        });
+        video.srcObject = stream;
+
+        // Safari prefers mp4 (H.264/AAC)
+        mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/mp4' });
+
+        mediaRecorder.ondataavailable = e => {
+          if (e.data.size > 0) recordedChunks.push(e.data);
+        };
+
+        mediaRecorder.onstop = saveVideo;
+      } catch (err) {
+        alert("Camera error: " + err.message);
+      }
+    }
+
+    function saveVideo() {
+      const blob = new Blob(recordedChunks, { type: 'video/mp4' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'video-4k.mp4';
+      a.click();
+      URL.revokeObjectURL(url);
+      recordedChunks = [];
+    }
+
+    startBtn.onclick = () => {
+      mediaRecorder.start();
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+    };
+
+    stopBtn.onclick = () => {
+      mediaRecorder.stop();
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+    };
+
+    initCamera();
+  </script>
+</body>
+</html>
